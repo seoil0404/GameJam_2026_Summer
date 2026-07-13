@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public static BattleManager Instance { get; private set; }
+
     public event Action OnBattleComplete;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void StartBattle()
     {

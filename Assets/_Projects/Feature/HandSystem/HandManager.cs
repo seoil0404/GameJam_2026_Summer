@@ -7,6 +7,7 @@ public class HandManager : MonoBehaviour
 
     [SerializeField] private int cardGenerateCount = 8;
 
+    [SerializeField] private HandView playerHandView;
     private List<CardData> _PlayerHands = new();
     public List<CardData> PlayerHands
     { 
@@ -23,6 +24,7 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private HandView enemyHandView;
     private List<CardData> _EnemyHands = new();
     public List<CardData> EnemyHands
     {

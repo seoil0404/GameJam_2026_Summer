@@ -1,6 +1,6 @@
 using System;
 
-public static class StateTable
+public static class StatTable
 {
     // 효과 구현하는 사람들은 이 곱한 값을 효과에 적용하고
     // 캐릭터 구현하는 사람들은 이 값을 조정하고

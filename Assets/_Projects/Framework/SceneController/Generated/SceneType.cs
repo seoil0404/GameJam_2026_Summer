@@ -3,4 +3,5 @@ using System;
 [Serializable]
 public enum SceneType {
 	StartScene,
+	MainScene,
 }

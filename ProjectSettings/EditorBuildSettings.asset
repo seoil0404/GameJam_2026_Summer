@@ -17,6 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DefeatScene.unity
     guid: 263525b5a090a404cb111f3ff6a29d93
+  - enabled: 1
     path: Assets/Scenes/ChatacterSelectScece.unity
     guid: 9ab5d4c955a7b9a4ba0eccd502767d6b
   m_configObjects:

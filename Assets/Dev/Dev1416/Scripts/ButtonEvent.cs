@@ -8,6 +8,7 @@ public class ButtonEvent : MonoBehaviour
     public void SceneMove() //씬 메인으로 이동
     {
         Debug.Log("버튼클릭");
+
         SceneController.LoadScene(SceneType.MainScene);
     }
     public void GameQuit() // 게임 종료

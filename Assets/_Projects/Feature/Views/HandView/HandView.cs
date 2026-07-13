@@ -6,10 +6,8 @@ using UnityEngine;
 public class HandView : MonoBehaviour, ICardHoldView
 {
     [SerializeField] private CardView cardViewPrefab;
-    [SerializeField] private bool bIsInteractable;
     [SerializeField] private float radius;
     [SerializeField] private float interval;
-    [SerializeField] private float cardLerpSpeed;
 
     private List<CardView> cardViews = new();
     private List<Vector2> cardViewTargetPos = new();
@@ -55,8 +53,7 @@ public class HandView : MonoBehaviour, ICardHoldView
     {
         for(int index = 0; index < cardViews.Count; index++)
         {
-            RectTransform cardViewRectTransform = cardViews[index].GetComponent<RectTransform>();
-            throw new NotImplementedException();
+            cardViews[index].SetTransform(cardViewTargetPos[index]);
         }
     }
 }

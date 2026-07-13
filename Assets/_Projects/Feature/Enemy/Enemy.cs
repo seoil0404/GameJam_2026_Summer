@@ -1,8 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class Enemy : Entity
 {
+    public static Enemy Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
 
@@ -12,6 +18,4 @@ public class Enemy : Entity
     {
 
     }
-    //CardManager·Î ÀÌÀüµÊ
-    
 }

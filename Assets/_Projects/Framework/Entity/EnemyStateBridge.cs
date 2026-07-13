@@ -8,7 +8,7 @@ public static class EnemyStateBridge
 
     public static Entity GetEnemy()
     {
-        return null;
+        return Enemy.Instance;
     }
 
     public static void StartAllocate()

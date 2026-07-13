@@ -2,7 +2,7 @@ using System;
 
 public enum CombatAttribute
 {
-    Rock,
-    Scissor,
-    Paper
+    Fire,
+    Water,
+    Grass
 }

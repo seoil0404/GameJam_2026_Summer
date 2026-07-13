@@ -21,21 +21,21 @@ public class CombatManager : MonoBehaviour
 
         switch (owner)
         {
-            case CombatAttribute.Rock:
-                if (opponent == CombatAttribute.Scissor)
+            case CombatAttribute.Fire:
+                if (opponent == CombatAttribute.Water)
                     return 1;
                 else
                     return -1;
 
-            case CombatAttribute.Scissor:
-                if (opponent == CombatAttribute.Paper)
+            case CombatAttribute.Water:
+                if (opponent == CombatAttribute.Grass)
                     return 1;
                 else
                     return -1;
 
 
-            case CombatAttribute.Paper:
-                if (opponent == CombatAttribute.Rock)
+            case CombatAttribute.Grass:
+                if (opponent == CombatAttribute.Fire)
                     return 1;
                 else
                     return -1;

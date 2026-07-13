@@ -5,15 +5,15 @@ public class CombatTestRunner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        Test(CombatAttribute.Rock, CombatAttribute.Rock);
-        Test(CombatAttribute.Rock, CombatAttribute.Scissor);
-        Test(CombatAttribute.Rock, CombatAttribute.Paper);
-        Test(CombatAttribute.Scissor, CombatAttribute.Rock);
-        Test(CombatAttribute.Scissor, CombatAttribute.Scissor);
-        Test(CombatAttribute.Scissor, CombatAttribute.Paper);
-        Test(CombatAttribute.Paper, CombatAttribute.Rock);
-        Test(CombatAttribute.Paper, CombatAttribute.Scissor);
-        Test(CombatAttribute.Paper, CombatAttribute.Paper);
+        Test(CombatAttribute.Fire, CombatAttribute.Fire);
+        Test(CombatAttribute.Fire, CombatAttribute.Water);
+        Test(CombatAttribute.Fire, CombatAttribute.Grass);
+        Test(CombatAttribute.Water, CombatAttribute.Fire);
+        Test(CombatAttribute.Water, CombatAttribute.Water);
+        Test(CombatAttribute.Water, CombatAttribute.Grass);
+        Test(CombatAttribute.Grass, CombatAttribute.Fire);
+        Test(CombatAttribute.Grass, CombatAttribute.Water);
+        Test(CombatAttribute.Grass, CombatAttribute.Grass);
     }
 
     // Update is called once per frame
@@ -35,21 +35,21 @@ public class CombatTestRunner : MonoBehaviour
 
         switch (owner)
         {
-            case CombatAttribute.Rock:
-                if (opponent == CombatAttribute.Scissor)
+            case CombatAttribute.Fire:
+                if (opponent == CombatAttribute.Water)
                     return 1;
                 else
                     return -1;
 
-            case CombatAttribute.Scissor:
-                if (opponent == CombatAttribute.Paper)
+            case CombatAttribute.Water:
+                if (opponent == CombatAttribute.Grass)
                     return 1;
                 else
                     return -1;
 
 
-            case CombatAttribute.Paper:
-                if (opponent == CombatAttribute.Rock)
+            case CombatAttribute.Grass:
+                if (opponent == CombatAttribute.Fire)
                     return 1;
                 else
                     return -1;

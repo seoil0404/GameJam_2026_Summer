@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
-public class HandView : MonoBehaviour, ICardHoldView
+public class HandView : CardHoldView
 {
-    [SerializeField] private CardView cardViewPrefab;
-    [SerializeField] private float radius;
     [SerializeField] private float interval;
+    [SerializeField] private bool reverseDirection;
 
     private List<CardView> cardViews = new();
     private List<Vector2> cardViewTargetPos = new();
@@ -19,13 +18,13 @@ public class HandView : MonoBehaviour, ICardHoldView
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void AllocateCard(CardView cardView)
+    public override void AllocateCard(CardView cardView)
     {
         cardViews.Add(cardView);
         RebuildCardView();
     }
 
-    public void DeallocateCard(CardView cardView)
+    public override void DeallocateCard(CardView cardView)
     {
         cardViews.Remove(cardView);
         RebuildCardView();
@@ -36,16 +35,22 @@ public class HandView : MonoBehaviour, ICardHoldView
         int cardCount = cardViews.Count;
         cardViewTargetPos = new List<Vector2>(cardCount);
 
-        float angleUnit = interval / radius;
-        float offset = cardCount % 2 ==0 ? -angleUnit / 2 : 0;
+        int multiplier = reverseDirection ? -1 : 1;
 
-        for (int index = -(cardCount / 2) - (cardCount % 2 - 1); index < cardCount/2; index++)
+        for(int index = 0; index < cardCount; index++)
         {
-            Vector2 pos = new(
-                Mathf.Sin(angleUnit*index) + rectTransform.anchoredPosition.x, 
-                Mathf.Cos(angleUnit*index) + rectTransform.anchoredPosition.y);
+            cardViewTargetPos.Add(
+                new Vector2(
+                    interval * (index - cardCount/2) * multiplier + rectTransform.anchoredPosition.x, 
+                    rectTransform.anchoredPosition.y
+                    )
+                );
+        }
 
-            cardViewTargetPos.Add(pos);
+        for (int index = 0; index < cardCount; index++)
+        {
+            int drawIndex = reverseDirection ? cardCount - 1 - index : index;
+            cardViews[drawIndex].transform.SetAsLastSibling();
         }
     }
 

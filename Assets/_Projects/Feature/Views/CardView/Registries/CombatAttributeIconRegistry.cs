@@ -39,9 +39,9 @@ public class CombatAttributeIconRegistry : ScriptableObject
     {
         dictionary = new Dictionary<CombatAttribute, Sprite>
         {
-            { CombatAttribute.Rock,    rockIcon    },
-            { CombatAttribute.Scissor, scissorIcon },
-            { CombatAttribute.Paper,   paperIcon   },
+            { CombatAttribute.Fire,    rockIcon    },
+            { CombatAttribute.Water, scissorIcon },
+            { CombatAttribute.Grass,   paperIcon   },
         };
     }
 }

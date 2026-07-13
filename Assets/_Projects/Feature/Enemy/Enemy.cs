@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static Enemy Instance { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        
+
     }
 }

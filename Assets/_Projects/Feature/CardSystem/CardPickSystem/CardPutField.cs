@@ -5,11 +5,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class CardPutField : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private ICardHoldView connectedCardHoldView;
+    [SerializeField] private CardHoldView connectedCardHoldView;
 
     private Image image;
 
-    public ICardHoldView ConnectedCardHoldView => connectedCardHoldView;
+    public CardHoldView ConnectedCardHoldView => connectedCardHoldView;
 
     private void Awake()
     {
@@ -29,11 +29,13 @@ public class CardPutField : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        Debug.Log("Enter");
+        CardPickManager.Instance.EnterCardPutField(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        Debug.Log("Exit");
+        CardPickManager.Instance.ExitCardPutField();
     }
 }

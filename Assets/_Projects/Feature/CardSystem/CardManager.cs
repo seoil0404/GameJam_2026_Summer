@@ -6,6 +6,9 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance { get; private set; }
 
+    [SerializeField] private Transform generateAnchor;
+    [SerializeField] private CardView cardViewPrefab;
+
     private void Awake()
     {
         Instance = this;
@@ -31,6 +34,14 @@ public class CardManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    public CardView GenerateCardView(CardData cardData)
+    {
+        var cardView = Instantiate(cardViewPrefab, generateAnchor.transform);
+        cardView.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        return cardView;
     }
 
     private static T GetRandomEnum<T>() where T : Enum

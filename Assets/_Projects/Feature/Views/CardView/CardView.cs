@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class CardView : MonoBehaviour
+[RequireComponent(typeof(CanvasGroup))]
+public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Elements")]
     [SerializeField] private Image cardEffectView;
@@ -15,23 +17,32 @@ public class CardView : MonoBehaviour
     [SerializeField] private EffectActivateConditionIconRegistry effectActivateConditionIconRegistry;
 
     public CardData CardData { get; private set; } = null;
-    public bool bIsPicked { get; set; } = false;
+    public bool bIsDragging { get; set; } = false;
 
     private ICardHoldView cardHoldView = null;
 
+    private Canvas rootCanvas = null;
     private RectTransform rectTransform = null;
-    private float moveLerpSpeed = 50.0f;
+    private float moveLerpSpeed = 10.0f;
     private Vector2 targetPos = Vector2.zero;
+
+    private CanvasGroup canvasGroup;
+
+    private int originalIndex = 0;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        rootCanvas = GetComponentInParent<Canvas>().rootCanvas;
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void AttatchCard(ICardHoldView _cardHoldView)
     {
         if (cardHoldView != null)
             cardHoldView.DeallocateCard(this);
+
+        cardHoldView = _cardHoldView;
 
         cardHoldView.AllocateCard(this);
     }
@@ -55,17 +66,49 @@ public class CardView : MonoBehaviour
         targetPos = vector;
     }
 
-    public void ForceSetTransform(Vector2 vector)
-    {
-        rectTransform.anchoredPosition = vector;
-    }
-
     private void Update()
     {
-        if (bIsPicked)
+        if (!bIsDragging)
         {
             rectTransform.anchoredPosition = 
                 Vector2.Lerp(rectTransform.anchoredPosition, targetPos, moveLerpSpeed * Time.deltaTime);
         }
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / rootCanvas.scaleFactor;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        bIsDragging = true;
+        canvasGroup.blocksRaycasts = false;
+
+        CardPickManager.Instance.CardPicked(this);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        bIsDragging = false;
+        canvasGroup.blocksRaycasts = true;
+
+        CardPickManager.Instance.CardUnpicked(this);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        originalIndex = transform.GetSiblingIndex();
+
+        transform.SetAsLastSibling();
+
+        transform.localScale = Vector3.one * 1.1f;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.SetSiblingIndex(originalIndex);
+
+        transform.localScale = Vector3.one;
     }
 }

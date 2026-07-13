@@ -7,8 +7,19 @@ public class FieldManager : MonoBehaviour
     [field: SerializeField] public Field PlayerField { get; set; }
     [field: SerializeField] public Field EnemyField { get; set; }
 
+    [SerializeField] private FieldSlotView[] playerFieldSlotViews;
+    [SerializeField] private FieldSlotView[] enemyFieldSlotViews;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        for (int index = 0; index < playerFieldSlotViews.Length; index++)
+        {
+
+        }
     }
 }

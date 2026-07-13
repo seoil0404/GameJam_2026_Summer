@@ -14,7 +14,9 @@ public class HandManager : MonoBehaviour
         get
         {
             if (_PlayerHands.Count <= 0)
-                _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount);
+            {
+                InitializePlayerHands();
+            }
 
             return _PlayerHands;
         }
@@ -44,5 +46,20 @@ public class HandManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        InitializePlayerHands();
+    }
+    
+    private void InitializePlayerHands()
+    {
+        _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount);
+        foreach (CardData card in _PlayerHands)
+        {
+            var cardView = CardManager.Instance.GenerateCardView(card);
+            cardView.AttatchCard(playerHandView);
+        }
     }
 }

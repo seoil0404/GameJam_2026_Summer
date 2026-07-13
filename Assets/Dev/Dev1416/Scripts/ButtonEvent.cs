@@ -4,6 +4,7 @@ using UnityEngine;
 public class ButtonEvent : MonoBehaviour
 {
     public Animator animator; //버튼에 마우스 갖다대면
+    //public GameObject Option;
     bool canAnime = false;
     public void SceneMove() //씬 메인으로 이동
     {
@@ -15,7 +16,10 @@ public class ButtonEvent : MonoBehaviour
     {
         Debug.Log("나가기클릭");
     }
-
+    //public void OptionActive(GameObject OPtionPopUp) // 창 열고닫기
+    //{
+    //    OPtionPopUp.SetActive(!OPtionPopUp.activeSelf);
+    //}
     public void CanAnime() // 시작시 애니메이션 재생 완료 후에 다은 애니메이션ㅇ ㅣ되게하기
     {
         canAnime = true;

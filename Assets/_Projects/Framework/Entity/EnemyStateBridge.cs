@@ -5,6 +5,11 @@ public static class EnemyStateBridge
 {
     public static event Action OnAllocateComplete;
 
+    public static Entity GetEnemy()
+    {
+        return null;
+    }
+
     public static void StartAllocate()
     {
         

@@ -26,6 +26,10 @@ public class GameFlowManager : MonoBehaviour
         PlayerStateBridge.OnAllocateComplete += PlayerStateBridge_OnAllocateComplete;
         EnemyStateBridge.OnAllocateComplete += EnemyStateBridge_OnAllocateComplete;
         BattleManager.Instance.OnBattleComplete += OnBattleComplete;
+
+        SceneController.LoadScene(SceneType.StartScene); 
+        SceneController.LoadScene(SceneType.SucessScene);
+        SceneController.LoadScene(SceneType.DefeatScene);
     }
 
 
@@ -53,9 +57,10 @@ public class GameFlowManager : MonoBehaviour
 
 
 
+    
 
 
-   
+    
     // Update is called once per frame
     void Update()
     {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
@@ -18,6 +19,24 @@ public class CardManager : MonoBehaviour
     {
         () => new TestCardEffect1()
     };
+
+    public void ActiveAllCardViews()
+    {
+        var cardViews = FindObjectsByType<CardView>(FindObjectsSortMode.None);
+        foreach (var cardView in cardViews)
+        {
+            cardView.bIsInteractable = true;
+        }
+    }
+
+    public void DeactiveAllCardViews()
+    {
+        var cardViews = FindObjectsByType<CardView>(FindObjectsSortMode.None);
+        foreach (var cardView in cardViews)
+        {
+            cardView.bIsInteractable = false;
+        }
+    }
 
     public List<CardData> GenerateCards(int count)
     {

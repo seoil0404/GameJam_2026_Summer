@@ -6,6 +6,8 @@ public class FieldSlotView : CardHoldView
     private RectTransform rectTransform;
     private CardView cardView = null;
 
+    public CardView CardView => cardView;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();

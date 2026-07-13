@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,8 +13,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartGame()
+    private void Start()
     {
+        StartCoroutine(StartGame());
+    }
+
+    private IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(1f);
+
         OnStartGame?.Invoke();
     }
 

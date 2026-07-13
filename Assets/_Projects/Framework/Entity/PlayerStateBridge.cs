@@ -14,6 +14,14 @@ public static class PlayerStateBridge
 
     public static void StartAllocate()
     {
-        
+        CardManager.Instance.ActiveAllCardViews();
+    }
+
+    private static void AllocateComplete()
+    {
+        CardVisualSynchrolyzer.Instance.SyncPlayer();
+        CardManager.Instance.DeactiveAllCardViews();
+
+        OnAllocateComplete?.Invoke();
     }
 }

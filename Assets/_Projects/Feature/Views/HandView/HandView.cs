@@ -13,6 +13,8 @@ public class HandView : CardHoldView
 
     private RectTransform rectTransform;
 
+    public List<CardView> CardViews => cardViews;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();

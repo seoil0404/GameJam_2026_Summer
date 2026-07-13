@@ -4,4 +4,5 @@ using System;
 public enum SceneType {
 	StartScene,
 	MainScene,
+	ChatacterSelectScece,
 }

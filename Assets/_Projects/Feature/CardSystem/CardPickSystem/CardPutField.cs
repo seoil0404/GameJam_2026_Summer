@@ -29,13 +29,11 @@ public class CardPutField : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
         CardPickManager.Instance.EnterCardPutField(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Exit");
         CardPickManager.Instance.ExitCardPutField();
     }
 }

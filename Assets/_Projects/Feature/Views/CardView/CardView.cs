@@ -18,6 +18,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public CardData CardData { get; private set; } = null;
     public bool bIsDragging { get; set; } = false;
+    public bool bIsInteractable { get; set; } = false;
 
     private ICardHoldView cardHoldView = null;
 
@@ -40,7 +41,22 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void AttatchCard(ICardHoldView _cardHoldView)
     {
         if (cardHoldView != null)
+        {
             cardHoldView.DeallocateCard(this);
+            if(cardHoldView is FieldSlotView && _cardHoldView is FieldSlotView)
+            {
+                var fieldSlotView = cardHoldView as FieldSlotView;
+                var _fieldSlotView = _cardHoldView as FieldSlotView;
+
+                var opponentCardView = _fieldSlotView.CardView;
+                if(opponentCardView != null)
+                {
+                    opponentCardView.cardHoldView = fieldSlotView;
+                    _fieldSlotView.DeallocateCard(opponentCardView);
+                    fieldSlotView.AllocateCard(opponentCardView);
+                }
+            }
+        }
 
         cardHoldView = _cardHoldView;
 
@@ -77,11 +93,17 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!bIsInteractable)
+            return;
+
         rectTransform.anchoredPosition += eventData.delta / rootCanvas.scaleFactor;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!bIsInteractable)
+            return;
+
         bIsDragging = true;
         canvasGroup.blocksRaycasts = false;
 
@@ -90,6 +112,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!bIsInteractable)
+            return;
+
         bIsDragging = false;
         canvasGroup.blocksRaycasts = true;
 
@@ -98,6 +123,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!bIsInteractable)
+            return;
+
         originalIndex = transform.GetSiblingIndex();
 
         transform.SetAsLastSibling();
@@ -107,6 +135,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!bIsInteractable)
+            return;
+
         transform.SetSiblingIndex(originalIndex);
 
         transform.localScale = Vector3.one;

@@ -21,3 +21,7 @@ MonoBehaviour:
     \uB54C\uBB38\uC5D0, \uC0C1\uB300\uB97C \uC624\uB798 \uC0B4\uB824\uB458\uC218\uB85D
     \uAC70\uBA38\uB9AC\uB294 \uB354 \uB2E8\uB2E8\uD574\uC9C4\uB2E4."
   protrait: {fileID: 2003917310584461177, guid: 3c8433e544e7ce940916c7c5dde2cd4d, type: 3}
+  handSizeBonus: 0
+  healIntervalTurns: 3
+  healPercentOfEnemyHp: 0.3
+  effectDoubleChance: 0

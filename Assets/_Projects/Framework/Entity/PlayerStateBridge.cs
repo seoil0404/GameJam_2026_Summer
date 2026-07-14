@@ -9,15 +9,16 @@ public static class PlayerStateBridge
 
     public static Entity GetPlayer()
     {
-        return null;
+        return Player.Instance;
     }
 
     public static void StartAllocate()
     {
         CardManager.Instance.ActiveAllCardViews();
+        Player.Instance.StartAllocate();
     }
 
-    private static void AllocateComplete()
+    public static void AllocateComplete()
     {
         CardVisualSynchrolyzer.Instance.SyncPlayer();
         CardManager.Instance.DeactiveAllCardViews();

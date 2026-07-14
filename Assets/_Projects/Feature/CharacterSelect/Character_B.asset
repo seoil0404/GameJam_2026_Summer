@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384eb3a23d563de48837e7b9e3d7b929, type: 3}
   m_Name: Character_B
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: gurnurri
-  description: "\uC0C1\uB300 \uCCB4\uB825\uC744 \uC790\uC6D0 \uC0BC\uC544 \uC870\uAE08\uC529
-    \uBE68\uC544\uBA39\uB294 \uB048\uC9C8\uAE34 \uCE90\uB9AD\uD130."
+  characterName: "\uAC70\uBA38\uB9AC"
+  description: "\uC0C1\uB300\uC758 \uCCB4\uB825\uC744 \uC870\uAE08\uC529 \uB048\uC9C8\uAE30\uAC8C
+    \uAC09\uC544\uBA39\uB294 \uCE90\uB9AD\uD130\uC774\uB2E4.\n\n3\uD134\uC774 \uC9C0\uB0A0
+    \uB54C\uB9C8\uB2E4 \uADF8 \uC2DC\uC810 \uC0C1\uB300 \uCCB4\uB825\uC758 35%\uB9CC\uD07C
+    \uC790\uC2E0\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4.\n\uD68C\uBCF5\uC740
+    \uCD5C\uB300 \uCCB4\uB825 20\uC744 \uB118\uC5B4\uC11C\uB3C4 \uC801\uC6A9\uB418\uAE30
+    \uB54C\uBB38\uC5D0, \uC0C1\uB300\uB97C \uC624\uB798 \uC0B4\uB824\uB458\uC218\uB85D
+    \uAC70\uBA38\uB9AC\uB294 \uB354 \uB2E8\uB2E8\uD574\uC9C4\uB2E4."
   protrait: {fileID: 2003917310584461177, guid: 3c8433e544e7ce940916c7c5dde2cd4d, type: 3}

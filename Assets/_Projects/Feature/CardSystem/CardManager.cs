@@ -20,7 +20,6 @@ public class CardManager : MonoBehaviour
     {
         () => new JabCardEffect(),
         () => new EnergeDrinkCardEffect(),
-        () => new MultivitaminCardEffect(),
         () => new SlashCardEffect(),
     };
 

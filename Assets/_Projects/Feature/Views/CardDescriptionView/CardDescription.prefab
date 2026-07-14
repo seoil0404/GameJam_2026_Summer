@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8808170409959741322}
   - component: {fileID: 4349376252733255723}
   m_Layer: 5
-  m_Name: CardDescriptionView
+  m_Name: CardDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,14 +198,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 76
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Effect TitleEffect TitleEffect TitleEffect TitleEffect TitleEffect TitleEffect
-    TitleEffect TitleEffect TitleEffect TitleEffect TitleEffect Title
+  m_Text: 
 --- !u!1 &2692448838232523558
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Effect Title
+  m_Text: "\uD761\uD608"
 --- !u!1 &4656090235793243207
 GameObject:
   m_ObjectHideFlags: 0

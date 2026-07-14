@@ -52,6 +52,8 @@ public class SliderExercise : MonoBehaviour
                 AudioManager.SFXVolume = value;
                 Debug.Log("SFX Volume: " + AudioManager.SFXVolume);
                 text.text = $"SFX {(value * 100):F0}%";
+
+
                 break;
             case VolumeType.BGM:
                 AudioManager.BGMVolume = value;

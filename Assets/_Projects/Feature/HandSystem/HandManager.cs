@@ -52,9 +52,14 @@ public class HandManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnStartGame += OnStartgame;
+    }
+
+    private void OnStartgame()
+    {
         InitializePlayerHands();
     }
-    
+
     private void InitializePlayerHands()
     {
         _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount);

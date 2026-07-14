@@ -40,6 +40,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void AttatchCard(ICardHoldView _cardHoldView)
     {
+        Player.Instance.OnAllocated();
+
         if (cardHoldView != null)
         {
             cardHoldView.DeallocateCard(this);

@@ -5,8 +5,24 @@ public class Player : Entity
 {
     public static Player Instance { get; private set; }
 
+    [SerializeField] private HealthView healthView;
+    [SerializeField] private ExchangeStackView exchangeStackView;
+
     private int exchangeStack = 0;
     public int ExchangeStack => exchangeStack;
+
+    public override int Health
+    {
+        get
+        {
+            return base.Health;
+        }
+        set
+        {
+            base.Health = value;
+            healthView.SetHealthText(value);
+        }
+    }
 
     private void Awake()
     {
@@ -26,6 +42,7 @@ public class Player : Entity
     public void StartAllocate()
     {
         exchangeStack++;
+        exchangeStackView.SetStackView(exchangeStack);
 
         if (HandManager.Instance.PlayerHands.Count <= 0)
             HandManager.Instance.InitializePlayerHands();
@@ -46,6 +63,8 @@ public class Player : Entity
         if (bIsFull)
         {
             exchangeStack--;
+            exchangeStackView.SetStackView(exchangeStack);
+
             if (exchangeStack <= 0)
             {
                 EndAllocate();

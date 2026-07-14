@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 33128237928558824}
   - component: {fileID: 963878425862884863}
   - component: {fileID: 9324584238540733}
+  - component: {fileID: 3830122718072180317}
   m_Layer: 5
   m_Name: CardView
   m_TagString: Untagged
@@ -32,8 +33,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4288559581499351821}
   - {fileID: 5353508651082033191}
+  - {fileID: 4288559581499351821}
   - {fileID: 4327096391580343867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,7 +100,7 @@ MonoBehaviour:
   cardEffectSpriteRegistry: {fileID: 11400000, guid: 243651d663ee59b42b0d0bdd91cb2545, type: 2}
   combatAttributeIconRegistry: {fileID: 11400000, guid: 554ba642e83caff40bbe145f55d200bb, type: 2}
   effectActivateConditionIconRegistry: {fileID: 11400000, guid: 49599ddf3969a1344b981f00c8d0457a, type: 2}
-  cardDescriptionViewPrefab: {fileID: 4349376252733255723, guid: 454b5d09187b60749be32c84caf5b618, type: 3}
+  cardDescriptionViewPrefab: {fileID: 4349376252733255723, guid: f59ef2a2af27e9540bb11fb47688293b, type: 3}
 --- !u!225 &9324584238540733
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -112,6 +113,28 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &3830122718072180317
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343635804037665038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47aff0e26fd72c14484926f7fb99652f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2380804227396344374
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +313,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8882170454764055879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,7 +10,8 @@ public class SliderExercise : MonoBehaviour
     public enum VolumeType
     {
         SFX,
-        BGM
+        BGM,
+        MASTER
     }
 
     [SerializeField] private VolumeType volumeType;
@@ -36,6 +37,9 @@ public class SliderExercise : MonoBehaviour
             case VolumeType.BGM:
                 slider.value = AudioManager.BGMVolume;
                 break;
+            case VolumeType.MASTER:
+                slider.value = AudioManager.MasterVolume;
+                break;
         }
     }
 
@@ -49,14 +53,18 @@ public class SliderExercise : MonoBehaviour
                 Debug.Log("SFX Volume: " + AudioManager.SFXVolume);
                 text.text = $"SFX {(value * 100):F0}%";
 
+
                 break;
             case VolumeType.BGM:
                 AudioManager.BGMVolume = value;
                 Debug.Log("BGM Volume: " + AudioManager.BGMVolume);
                 text.text = $"BGM {(value * 100):F0}%";
-
-
                 break;
+            case VolumeType.MASTER:
+                AudioManager.MasterVolume = value;
+                Debug.Log("Master Volume: " + AudioManager.MasterVolume);
+                text.text = $"MASTER {(value * 100):F0}%";
+                break; 
         }
     }
 

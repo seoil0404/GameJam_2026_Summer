@@ -14,15 +14,27 @@ public class AudioManager : MonoBehaviour
     private List<AudioSource> sfxSourcePool = new();
     private LinkedList<AudioSource> bgmSourcePool = new();
 
-    private static float sfxVolume = 1f;
-    private static float bgmVolume = 1f;
+    private static float sfxVolume = 0.5f;
+    private static float bgmVolume = 0.5f;
+    private static float masterVolume = 1f;
+
+
+    public static float MasterVolume
+    {
+        get => masterVolume;
+        set
+        {
+            masterVolume = value;
+            AudioListener.volume = value;
+        }
+    }
 
     public static float SFXVolume
     {
         get => sfxVolume;
         set
         {
-            sfxVolume = value;
+            sfxVolume = value * masterVolume ;
         }
     }
 
@@ -31,11 +43,13 @@ public class AudioManager : MonoBehaviour
         get => bgmVolume;
         set
         {
-            bgmVolume = value;
+            bgmVolume = value * masterVolume ;
             if (Instance.bgmSourcePool.First != null)
                 Instance.bgmSourcePool.First.Value.volume = value;
         }
     }
+
+
 
 #if UNITY_EDITOR
     [RuntimeInitializeOnLoadMethod]

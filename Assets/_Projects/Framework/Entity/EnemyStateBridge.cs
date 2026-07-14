@@ -25,6 +25,7 @@ public static class EnemyStateBridge
             ReplaceFieldCards(hands, field);
         }
 
+        CardVisualSynchronyzer.Instance.SyncEnemy();
         OnAllocateComplete?.Invoke();
     }
 

@@ -20,26 +20,9 @@ public class CardManager : MonoBehaviour
         () => new TestCardEffect1()
     };
 
-    public void ActiveAllCardViews()
+    public List<CardData> GenerateCards(int count, OwnerType owner)
     {
-        var cardViews = FindObjectsByType<CardView>(FindObjectsSortMode.None);
-        foreach (var cardView in cardViews)
-        {
-            cardView.bIsInteractable = true;
-        }
-    }
-
-    public void DeactiveAllCardViews()
-    {
-        var cardViews = FindObjectsByType<CardView>(FindObjectsSortMode.None);
-        foreach (var cardView in cardViews)
-        {
-            cardView.bIsInteractable = false;
-        }
-    }
-
-    public List<CardData> GenerateCards(int count)
-    {
+        Debug.Log(owner.ToString());
         List<CardData> result = new();
 
         for(int index = 0; index < count; index++)
@@ -48,7 +31,7 @@ public class CardManager : MonoBehaviour
             CombatAttribute combatAttribute = GetRandomEnum<CombatAttribute>();
             EffectActivateCondition effectActivateCondition = GetRandomEnum<EffectActivateCondition>();
 
-            CardData cardData = new(cardEffect, combatAttribute, effectActivateCondition);
+            CardData cardData = new(cardEffect, combatAttribute, effectActivateCondition, owner);
             result.Add(cardData);
         }
 

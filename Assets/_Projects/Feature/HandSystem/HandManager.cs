@@ -35,7 +35,7 @@ public class HandManager : MonoBehaviour
         get
         {
             if (_EnemyHands.Count <= 0)
-                _EnemyHands = CardManager.Instance.GenerateCards(cardGenerateCount);
+                _EnemyHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Enemy);
 
             return _EnemyHands;
         }
@@ -57,16 +57,26 @@ public class HandManager : MonoBehaviour
 
     private void OnStartgame()
     {
-        InitializePlayerHands();
+
     }
 
-    private void InitializePlayerHands()
+    public void InitializePlayerHands()
     {
-        _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount);
+        _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Player);
         foreach (CardData card in _PlayerHands)
         {
             var cardView = CardManager.Instance.GenerateCardView(card);
             cardView.AttatchCard(playerHandView);
+        }
+    }
+
+    public void InitializeEnemyHands()
+    {
+        _EnemyHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Enemy);
+        foreach (CardData card in _EnemyHands)
+        {
+            var cardView = CardManager.Instance.GenerateCardView(card);
+            cardView.AttatchCard(enemyHandView);
         }
     }
 }

@@ -34,6 +34,8 @@ public class HandView : CardHoldView
 
     private void RebuildCardView()
     {
+        cardViews.RemoveAll(t => t == null);
+
         int cardCount = cardViews.Count;
         cardViewTargetPos = new List<Vector2>(cardCount);
 

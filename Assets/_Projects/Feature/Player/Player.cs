@@ -26,6 +26,9 @@ public class Player : Entity
     public void StartAllocate()
     {
         exchangeStack++;
+
+        if (HandManager.Instance.PlayerHands.Count <= 0)
+            HandManager.Instance.InitializePlayerHands();
     }
 
     public void OnAllocated()

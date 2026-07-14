@@ -18,8 +18,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public CardData CardData { get; private set; } = null;
     public bool bIsDragging { get; set; } = false;
-    public bool bIsInteractable { get; set; } = false;
-
+    
     private ICardHoldView cardHoldView = null;
 
     private Canvas rootCanvas = null;
@@ -40,6 +39,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void AttatchCard(ICardHoldView _cardHoldView)
     {
+        if (cardHoldView == _cardHoldView)
+            return;
+
         if (cardHoldView != null)
         {
             cardHoldView.DeallocateCard(this);
@@ -56,13 +58,21 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                     fieldSlotView.AllocateCard(opponentCardView);
                 }
             }
+            else if(cardHoldView is HandView && _cardHoldView is FieldSlotView)
+            {
+                var _fieldSlotView = _cardHoldView as FieldSlotView;
+                if(_fieldSlotView.CardView != null)
+                {
+                    _fieldSlotView.CardView.Destroy();
+                }
+            }
         }
 
         cardHoldView = _cardHoldView;
 
         cardHoldView.AllocateCard(this);
 
-        if (_cardHoldView is FieldSlotView)
+        if (_cardHoldView is FieldSlotView && CardData.OwnerType == OwnerType.Player)
             Player.Instance.OnAllocated();
     }
 
@@ -96,7 +106,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!bIsInteractable)
+        if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
         rectTransform.anchoredPosition += eventData.delta / rootCanvas.scaleFactor;
@@ -104,7 +114,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!bIsInteractable)
+        if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
         bIsDragging = true;
@@ -115,7 +125,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!bIsInteractable)
+        if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
         bIsDragging = false;
@@ -126,7 +136,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!bIsInteractable)
+        if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
         originalIndex = transform.GetSiblingIndex();
@@ -138,11 +148,16 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!bIsInteractable)
+        if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
         transform.SetSiblingIndex(originalIndex);
 
         transform.localScale = Vector3.one;
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

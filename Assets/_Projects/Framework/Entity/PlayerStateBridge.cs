@@ -4,8 +4,7 @@ using UnityEngine;
 public static class PlayerStateBridge
 {
     public static event Action OnAllocateComplete;
-
-    private static bool isInitialized = false;
+    public static bool bIsAllocating { get; private set; } = false;
 
     public static Entity GetPlayer()
     {
@@ -14,16 +13,16 @@ public static class PlayerStateBridge
 
     public static void StartAllocate()
     {
-        CardManager.Instance.ActiveAllCardViews();
+        bIsAllocating = true;
+
         Player.Instance.StartAllocate();
     }
 
     public static void AllocateComplete()
     {
-        Debug.Log("AllocateComplete");
+        bIsAllocating = false;
 
-        CardVisualSynchrolyzer.Instance.SyncPlayer();
-        CardManager.Instance.DeactiveAllCardViews();
+        CardVisualSynchronyzer.Instance.SyncPlayer();
 
         OnAllocateComplete?.Invoke();
     }

@@ -17,7 +17,7 @@ public class FullPipelineTestRunner : MonoBehaviour
         FieldManager.Instance.EnemyField = enemyField;
 
         // 2. Player 로직이 아직 없으니, 테스트용으로 플레이어 필드도 직접 채워줌
-        var dummyPlayerCards = CardManager.Instance.GenerateCards(4);
+        var dummyPlayerCards = CardManager.Instance.GenerateCards(4, OwnerType.Player);
         for (int i = 0; i < 4; i++)
             playerField.Cards[i] = dummyPlayerCards[i];
 

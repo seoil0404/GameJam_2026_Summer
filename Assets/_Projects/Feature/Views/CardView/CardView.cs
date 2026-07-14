@@ -10,11 +10,15 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private Image cardEffectView;
     [SerializeField] private Image combatAttributeIconView;
     [SerializeField] private Image effectActivateConditionIconView;
+    [SerializeField] private Image descriptionGuideView;
 
     [Header("Registries")]
     [SerializeField] private CardEffectSpriteRegistry cardEffectSpriteRegistry;
     [SerializeField] private CombatAttributeIconRegistry combatAttributeIconRegistry;
     [SerializeField] private EffectActivateConditionIconRegistry effectActivateConditionIconRegistry;
+
+    [Header("Prefabs")]
+    [SerializeField] private CardDescriptionView cardDescriptionViewPrefab;
 
     public CardData CardData { get; private set; } = null;
     public bool bIsDragging { get; set; } = false;
@@ -26,6 +30,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private float moveLerpSpeed = 10.0f;
     private Vector2 targetPos = Vector2.zero;
 
+    private CardDescriptionView cardDescriptionView = null;
+
     private CanvasGroup canvasGroup;
 
     private int originalIndex = 0;
@@ -35,6 +41,11 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         rectTransform = GetComponent<RectTransform>();
         rootCanvas = GetComponentInParent<Canvas>().rootCanvas;
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    private void Start()
+    {
+        descriptionGuideView.color = new Color(1, 1, 1, 0);
     }
 
     public void AttatchCard(ICardHoldView _cardHoldView)
@@ -102,6 +113,11 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             rectTransform.anchoredPosition = 
                 Vector2.Lerp(rectTransform.anchoredPosition, targetPos, moveLerpSpeed * Time.deltaTime);
         }
+        if(descriptionGuideView.color == Color.white && Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (cardDescriptionView == null)
+                Instantiate(cardDescriptionViewPrefab);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -120,6 +136,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         bIsDragging = true;
         canvasGroup.blocksRaycasts = false;
 
+        descriptionGuideView.color = new Color(1, 1, 1, 0);
+
         CardPickManager.Instance.CardPicked(this);
     }
 
@@ -130,6 +148,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         bIsDragging = false;
         canvasGroup.blocksRaycasts = true;
+
+        descriptionGuideView.color = new Color(1, 1, 1, 1);
 
         CardPickManager.Instance.CardUnpicked(this);
     }
@@ -143,6 +163,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         transform.SetAsLastSibling();
 
+        descriptionGuideView.color = new Color(1, 1, 1, 1);
+
         transform.localScale = Vector3.one * 1.1f;
     }
 
@@ -152,6 +174,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             return;
 
         transform.SetSiblingIndex(originalIndex);
+
+        descriptionGuideView.color = new Color(1, 1, 1, 0);
 
         transform.localScale = Vector3.one;
     }

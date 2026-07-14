@@ -6,6 +6,8 @@ public class EnergeDrinkCardEffect : CardEffectBase
 
     public override int Priority => 0;
 
+    public override string Description => "Description";
+
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
         owner.Health += 2;

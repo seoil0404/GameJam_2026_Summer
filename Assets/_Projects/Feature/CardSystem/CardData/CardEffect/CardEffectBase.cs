@@ -20,3 +20,4 @@ public abstract class CardEffectBase : ICardEffect
 
     public abstract void ActivateEffect(Entity owner, Entity opponent);
 }
+

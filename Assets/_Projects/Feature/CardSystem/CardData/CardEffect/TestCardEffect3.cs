@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestCardEffect3 : CardEffectBase
 {
-    public override string Name => "Energy_Drink";
+    public override string Name => "Energy_Drink"; //에너지 드링크
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
         owner.Health += 2;

@@ -12,7 +12,13 @@ public class ButtonEvent : MonoBehaviour
     {
         OptionOCMan = OptionOpenAndClose.Instance;
     }
-    public void SceneMove() //씬 메인으로 이동
+    public void MoveCharSelectScene() //씬 메인으로 이동
+    {
+        Debug.Log("버튼클릭");
+
+        SceneController.LoadScene(SceneType.ChatacterSelectScece);
+    }
+    public void MoveMainScene() //씬 메인으로 이동
     {
         Debug.Log("버튼클릭");
 

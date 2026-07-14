@@ -1100,9 +1100,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842980768}
+      - m_Target: {fileID: 1842980763}
         m_TargetAssemblyTypeName: ButtonEvent_2, Assembly-CSharp
-        m_MethodName: SceneMove_Retry
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

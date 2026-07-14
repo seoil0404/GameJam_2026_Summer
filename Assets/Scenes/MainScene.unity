@@ -1209,7 +1209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808075230}
-  - component: {fileID: 808075229}
+  - component: {fileID: 808075231}
   m_Layer: 0
   m_Name: CardVisualSynchnolyzer
   m_TagString: Untagged
@@ -1217,18 +1217,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &808075229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808075228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ddb4efd4e06c942a21693ebbc906c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardVisualSynchrolyzer
 --- !u!4 &808075230
 Transform:
   m_ObjectHideFlags: 0
@@ -1244,6 +1232,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808075231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808075228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4165be35589a74c9ec99bb41b60d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardVisualSynchronyzer
 --- !u!1 &860223499
 GameObject:
   m_ObjectHideFlags: 0

@@ -2764,7 +2764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1110767051}
         m_TargetAssemblyTypeName: ButtonEvent, Assembly-CSharp
-        m_MethodName: SceneMove
+        m_MethodName: MoveCharSelectScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

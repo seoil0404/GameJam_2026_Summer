@@ -8,7 +8,7 @@ public class ButtonEvent : MonoBehaviour
     //public GameObject Option;
     bool canAnime = false;
 
-    private void Awake()
+    private void Start()
     {
         OptionOCMan = OptionOpenAndClose.Instance;
     }

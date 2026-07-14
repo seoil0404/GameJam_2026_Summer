@@ -58,6 +58,7 @@ public class CardManager : MonoBehaviour
     public CardView GenerateCardView(CardData cardData)
     {
         var cardView = Instantiate(cardViewPrefab, generateAnchor.transform);
+        cardView.SetCardView(cardData);
         cardView.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
         return cardView;

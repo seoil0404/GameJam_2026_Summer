@@ -26,13 +26,7 @@ public class GameFlowManager : MonoBehaviour
         PlayerStateBridge.OnAllocateComplete += PlayerStateBridge_OnAllocateComplete;
         EnemyStateBridge.OnAllocateComplete += EnemyStateBridge_OnAllocateComplete;
         BattleManager.Instance.OnBattleComplete += OnBattleComplete;
-
-        SceneController.LoadScene(SceneType.StartScene); 
-        SceneController.LoadScene(SceneType.SucessScene);
-        SceneController.LoadScene(SceneType.DefeatScene);
     }
-
-
 
     private void OnStartGame()
     {

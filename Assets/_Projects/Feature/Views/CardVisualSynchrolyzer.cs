@@ -18,6 +18,8 @@ public class CardVisualSynchrolyzer : MonoBehaviour
             handCards.Add(cardView.CardData);
         }
 
+        HandManager.Instance.PlayerHands = handCards;
+
         CardData[] cardDatas = new CardData[4];
         for(int index = 0; index < cardDatas.Length; index++)
         {
@@ -29,6 +31,20 @@ public class CardVisualSynchrolyzer : MonoBehaviour
 
     public void SyncEnemy()
     {
+        List<CardView> cardViews = new();
+
+        foreach (var cardView in HandManager.Instance.EnemyHandView.CardViews)
+            cardViews.Add(cardView);
+        foreach (var fieldslotView in FieldManager.Instance.EnemyFieldSlotViews)
+            cardViews.Add(fieldslotView.CardView);
+
+        List<CardData> cardDatas = new();
+
+        foreach(var cardData in HandManager.Instance.EnemyHands)
+            cardDatas.Add(cardData);
+        foreach(var cardData in FieldManager.Instance.PlayerField.Cards)
+            cardDatas.Add(cardData);
+
 
     }
 }

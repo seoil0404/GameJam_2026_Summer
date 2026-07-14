@@ -20,7 +20,7 @@ public class Player : Entity
 
     private void OnStartGame()
     {
-        exchangeStack = 4;
+
     }
 
     public void StartAllocate()
@@ -30,10 +30,23 @@ public class Player : Entity
 
     public void OnAllocated()
     {
-        exchangeStack--;
-        if(exchangeStack <= 0)
+        bool bIsFull = true;
+        foreach(var item in FieldManager.Instance.PlayerFieldSlotViews)
         {
-            EndAllocate();
+            if(item.CardView == null)
+            {
+                bIsFull = false;
+                break;
+            }
+        }
+
+        if (bIsFull)
+        {
+            exchangeStack--;
+            if (exchangeStack <= 0)
+            {
+                EndAllocate();
+            }
         }
     }
 

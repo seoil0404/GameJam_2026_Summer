@@ -116,7 +116,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if(descriptionGuideView.color == Color.white && Input.GetKeyDown(KeyCode.Tab))
         {
             if (cardDescriptionView == null)
-                Instantiate(cardDescriptionViewPrefab);
+            {
+                Instantiate(cardDescriptionViewPrefab).SetDescriptionView(CardData);
+            }
         }
     }
 

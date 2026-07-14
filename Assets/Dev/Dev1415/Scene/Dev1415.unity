@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turn_Image
       objectReference: {fileID: 0}
+    - target: {fileID: 902234612619157897, guid: a5a7aa49443781248855436395f2682d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7787509911643538157, guid: 29156b008d8376c48870f55583739cc6, type: 3}
     - target: {fileID: 7770327842421559159, guid: a5a7aa49443781248855436395f2682d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -10,5 +10,6 @@ public class MultivitaminCardEffect : CardEffectBase
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
+        //delete
     }
 }

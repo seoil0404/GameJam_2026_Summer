@@ -20,6 +20,8 @@ public static class PlayerStateBridge
 
     public static void AllocateComplete()
     {
+        Debug.Log("AllocateComplete");
+
         CardVisualSynchrolyzer.Instance.SyncPlayer();
         CardManager.Instance.DeactiveAllCardViews();
 

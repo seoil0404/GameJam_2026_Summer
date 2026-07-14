@@ -13,59 +13,20 @@ public static class EnemyStateBridge
 
     public static void StartAllocate()
     {
-        List<CardData> hands = HandManager.Instance.EnemyHands;
+        
         Field field = FieldManager.Instance.EnemyField;
 
-        if (IsFirstRound(field))
+        var randomCards = CardManager.Instance.GenerateCards(field.Cards.Length, OwnerType.Enemy);
+
+        for (int i = 0; i < field.Cards.Length; i++)
         {
-            PlaceInitialCards(hands, field);
-        }
-        else
-        {
-            ReplaceFieldCards(hands, field);
+            field.Cards[i] = randomCards[i];
         }
 
-        CardVisualSynchronyzer.Instance.SyncEnemy();
         OnAllocateComplete?.Invoke();
     }
 
-    private static bool IsFirstRound(Field field)
-    {
-        foreach (CardData card in field.Cards)
-        {
-            if (card != null)
-                return false;
-        }
-        return true;
-    }
-
-    private static void PlaceInitialCards(List<CardData> hands, Field field)
-    {
-        for (int i = 0; i < field.Cards.Length; i++)
-        {
-            if (hands.Count == 0)
-                break;
-
-            field.Cards[i] = hands[0];
-            hands.RemoveAt(0);
-        }
-    }
-
-    private static void ReplaceFieldCards(List<CardData> hands, Field field)
-    {
-        int swapCount = UnityEngine.Random.Range(1, 3); // 1~2장 교체 (기획서 규칙)
-
-        for (int i = 0; i < swapCount; i++)
-        {
-            if (hands.Count == 0)
-                break;
-
-            int slotIndex = UnityEngine.Random.Range(0, field.Cards.Length);
-
-            field.Cards[slotIndex] = hands[0];
-            hands.RemoveAt(0);
-        }
-    }
+    
     /*private static void Example()
     {
         // 카드 배치가 끝났을때는 아래처럼

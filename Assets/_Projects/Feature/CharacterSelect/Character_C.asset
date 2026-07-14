@@ -15,4 +15,4 @@ MonoBehaviour:
   characterName: jackpot
   description: "\uCE74\uB4DC \uB300\uC2E0 \uC2AC\uB86F \uB9B4\uACFC \uC8FC\uC0AC\uC704\uB97C
     \uBAB8\uC5D0 \uB450\uB978 \uB3C4\uBC15\uAFBC."
-  protrait: {fileID: 0}
+  protrait: {fileID: 8808205728673778266, guid: f06778d017cabfe4385fe621439bb240, type: 3}

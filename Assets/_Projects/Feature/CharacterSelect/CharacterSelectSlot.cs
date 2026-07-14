@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 public class CharacterSelectSlot : MonoBehaviour
@@ -6,15 +7,18 @@ public class CharacterSelectSlot : MonoBehaviour
     [SerializeField] private Image portraitImage;
     [SerializeField] private Text nameText;
     [SerializeField] private Button selectButton;
+    [SerializeField] private Outline selectedOutline;
 
-
+    public CharacterData CharacterData => characterData;
+    public event Action<CharacterSelectSlot> OnClicked;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         SetView();
-        selectButton.onClick.AddListener(OnSelect);
+        selectButton.onClick.AddListener(() => OnClicked?.Invoke(this));
+        SetHighlight(false);
 
     }
 
@@ -36,10 +40,11 @@ public class CharacterSelectSlot : MonoBehaviour
         nameText.text = characterData.CharacterName;
     }
 
-    private void OnSelect()
+    public void SetHighlight(bool isSelected)
     {
-        CharacterSelection.Select(characterData);
-        SceneController.LoadScene(SceneType.MainScene);
-
+        if (selectedOutline != null)
+        {
+            selectedOutline.enabled = isSelected;
+        }
     }
 }

@@ -17,6 +17,8 @@ public class CharacterData : ScriptableObject
 
 
     [SerializeField] private string characterName;
+
+    [TextArea(3,10)]
     [SerializeField] private string description;
     [SerializeField] private Sprite protrait;
 

@@ -23,6 +23,8 @@ public static class EnemyStateBridge
             field.Cards[i] = randomCards[i];
         }
 
+        CardVisualSynchronyzer.Instance.SyncEnemy();
+
         OnAllocateComplete?.Invoke();
     }
 

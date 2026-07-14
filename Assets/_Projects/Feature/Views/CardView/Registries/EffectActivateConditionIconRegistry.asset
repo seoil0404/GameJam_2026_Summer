@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91f77ac7defe7a4b89b6cad1dccbf12, type: 3}
   m_Name: EffectActivateConditionIconRegistry
   m_EditorClassIdentifier: Assembly-CSharp::EffectActivateConditionIconRegistry
-  winIcon: {fileID: 0}
-  drawIcon: {fileID: 0}
-  loseIcon: {fileID: 0}
+  winIcon: {fileID: 21300000, guid: 25fd3bfa35496f94dbe71b6080e88b69, type: 3}
+  drawIcon: {fileID: 21300000, guid: d69916c6252712d4095018dc0bb41043, type: 3}
+  loseIcon: {fileID: 21300000, guid: 250e4f19df11d514cb72a004ec80668f, type: 3}

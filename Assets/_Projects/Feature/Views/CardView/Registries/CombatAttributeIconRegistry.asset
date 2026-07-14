@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a667eaf63ff64fc46b4aa9cdf60f0d0b, type: 3}
   m_Name: CombatAttributeIconRegistry
   m_EditorClassIdentifier: Assembly-CSharp::CombatAttributeIconRegistry
-  rockIcon: {fileID: 0}
-  scissorIcon: {fileID: 0}
-  paperIcon: {fileID: 0}
+  fireIcon: {fileID: 21300000, guid: c45910d819b9ade43be74e13b5bd2c37, type: 3}
+  waterIcon: {fileID: 21300000, guid: d4afdcf8e1055c044b1aa2c42f8e382a, type: 3}
+  grassIcon: {fileID: 21300000, guid: 3b40b52357e8b4a449d69b5a2ce3e908, type: 3}

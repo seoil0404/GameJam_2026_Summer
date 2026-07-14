@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb963346e09b24743b628a224ed4bf79, type: 3}
   m_Name: CardImageRegistry
   m_EditorClassIdentifier: Assembly-CSharp::CardImageRegistry
-  <Images>k__BackingField: []
+  <Sprites>k__BackingField:
+  - {fileID: 21300000, guid: 16c3d0d827a00bb4ea933f71f7070697, type: 3}
+  - {fileID: 21300000, guid: 0f242a5a56c2b2548b57b697f984b25f, type: 3}
+  - {fileID: 21300000, guid: 98e5aca7fa4c133448d38b75e574d8f6, type: 3}
+  - {fileID: 21300000, guid: cf0cb4761cca58b418a6ea155d9df317, type: 3}

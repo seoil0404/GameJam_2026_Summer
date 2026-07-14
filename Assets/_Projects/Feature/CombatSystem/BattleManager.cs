@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -7,6 +10,8 @@ public class BattleManager : MonoBehaviour
 
     public event Action OnBattleComplete;
 
+    private List<EffectContainer> effectStack = new();
+
     private void Awake()
     {
         Instance = this;
@@ -14,6 +19,8 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
+        effectStack.Clear();
+
         Field playerField = FieldManager.Instance.PlayerField;
         Field enemyField = FieldManager.Instance.EnemyField;
 
@@ -22,18 +29,20 @@ public class BattleManager : MonoBehaviour
             BattleCard(playerField.Cards[index], enemyField.Cards[index]);
         }
 
-        GenerateVisualEffect();
+        effectStack.Sort((a, b) => a.OwnerCard.CardEffect.Priority.CompareTo(b.OwnerCard.CardEffect.Priority));
+
+        StartCoroutine(ApplyEffect());
     }
 
     private void BattleCard(CardData playerCard, CardData enemyCard)
     {
         if(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute) == playerCard.EffectActivateCondition)
         {
-            playerCard.CardEffect.ActivateEffect(PlayerStateBridge.GetPlayer(), EnemyStateBridge.GetEnemy());
+            effectStack.Add(new EffectContainer(playerCard, enemyCard));
         }
         if (BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute) == enemyCard.EffectActivateCondition)
         {
-            enemyCard.CardEffect.ActivateEffect(EnemyStateBridge.GetEnemy(), PlayerStateBridge.GetPlayer());
+            effectStack.Add(new EffectContainer(enemyCard, enemyCard));
         }
     }
 
@@ -52,13 +61,46 @@ public class BattleManager : MonoBehaviour
         };
     }
 
-    private void GenerateVisualEffect()
+    private IEnumerator ApplyEffect()
     {
+        yield return new WaitForSeconds(1f);
+
+        foreach (var effectContainer in effectStack)
+        {
+            effectContainer.ActivateEffect();
+
+            yield return new WaitForSeconds(1f);
+        }
+
         EndBattle();
     }
 
     private void EndBattle()
     {
         OnBattleComplete?.Invoke();
+    }
+
+    public class EffectContainer
+    {
+        public EffectContainer(CardData ownerCard, CardData opponentCard)
+        {
+            OwnerCard = ownerCard;
+            OpponentCard = opponentCard;
+        }
+
+        public CardData OwnerCard {  get; set; }
+        public CardData OpponentCard { get; set; }
+
+        public void ActivateEffect()
+        {
+            if(OwnerCard.OwnerType == OwnerType.Player)
+            {
+                OwnerCard.CardEffect.ActivateEffect(PlayerStateBridge.GetPlayer(), EnemyStateBridge.GetEnemy());
+            }
+            else
+            {
+                OwnerCard.CardEffect.ActivateEffect(EnemyStateBridge.GetEnemy(), PlayerStateBridge.GetPlayer());
+            }
+        }
     }
 }

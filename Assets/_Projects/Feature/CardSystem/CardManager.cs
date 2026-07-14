@@ -7,7 +7,8 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance { get; private set; }
 
-    [SerializeField] private Transform generateAnchor;
+    [SerializeField] private Transform playerCardGenerateAnchor;
+    [SerializeField] private Transform enemyCardGenerateAnchor;
     [SerializeField] private CardView cardViewPrefab;
 
     private void Awake()
@@ -17,7 +18,10 @@ public class CardManager : MonoBehaviour
 
     private List<Func<ICardEffect>> cardEffects { get; } = new List<Func<ICardEffect>>() 
     {
-        () => new TestCardEffect1()
+        () => new JabCardEffect(),
+        () => new EnergeDrinkCardEffect(),
+        () => new MultivitaminCardEffect(),
+        () => new SlashCardEffect(),
     };
 
     public List<CardData> GenerateCards(int count, OwnerType owner)
@@ -39,7 +43,8 @@ public class CardManager : MonoBehaviour
 
     public CardView GenerateCardView(CardData cardData)
     {
-        var cardView = Instantiate(cardViewPrefab, generateAnchor.transform);
+        Transform anchor = cardData.OwnerType == OwnerType.Player ? playerCardGenerateAnchor : enemyCardGenerateAnchor;
+        var cardView = Instantiate(cardViewPrefab, anchor.transform);
         cardView.SetCardView(cardData);
         cardView.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 

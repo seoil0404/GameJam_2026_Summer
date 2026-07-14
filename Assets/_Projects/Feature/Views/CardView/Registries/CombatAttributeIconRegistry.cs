@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CombatAttributeIconRegistry", menuName = "Scriptable Objects/CombatAttributeIconRegistry")]
 public class CombatAttributeIconRegistry : ScriptableObject
 {
-    [SerializeField] private Sprite rockIcon;
-    [SerializeField] private Sprite scissorIcon;
-    [SerializeField] private Sprite paperIcon;
+    [SerializeField] private Sprite fireIcon;
+    [SerializeField] private Sprite waterIcon;
+    [SerializeField] private Sprite grassIcon;
 
     private Dictionary<CombatAttribute, Sprite> dictionary;
 
@@ -39,9 +39,9 @@ public class CombatAttributeIconRegistry : ScriptableObject
     {
         dictionary = new Dictionary<CombatAttribute, Sprite>
         {
-            { CombatAttribute.Fire,    rockIcon    },
-            { CombatAttribute.Water, scissorIcon },
-            { CombatAttribute.Grass,   paperIcon   },
+            { CombatAttribute.Fire,     fireIcon    },
+            { CombatAttribute.Water,    waterIcon },
+            { CombatAttribute.Grass,    grassIcon   },
         };
     }
 }

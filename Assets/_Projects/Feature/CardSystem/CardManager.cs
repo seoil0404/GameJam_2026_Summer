@@ -22,7 +22,6 @@ public class CardManager : MonoBehaviour
 
     public List<CardData> GenerateCards(int count, OwnerType owner)
     {
-        Debug.Log(owner.ToString());
         List<CardData> result = new();
 
         for(int index = 0; index < count; index++)

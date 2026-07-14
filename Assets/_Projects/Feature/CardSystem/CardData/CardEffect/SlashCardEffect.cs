@@ -10,7 +10,8 @@ public class SlashCardEffect : CardEffectBase
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
-        opponent.Health -= opponent.Health / 5;
+        int slashDamage = opponent.Health / 5;
+        opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(slashDamage);
         //Debug.Log($"{opponent.name}used {Name}, {opponent.Health} dealing  5 damage");
     }
 }

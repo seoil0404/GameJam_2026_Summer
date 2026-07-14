@@ -625,7 +625,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 360fabf0edc5d78469df2e6f6ea31032, type: 3}
     m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
@@ -2169,6 +2169,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -93.54
       objectReference: {fileID: 0}
+    - target: {fileID: 1394064149176860951, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 360fabf0edc5d78469df2e6f6ea31032, type: 3}
     - target: {fileID: 2445377304274740999, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3011,6 +3015,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1711915428}
     m_Modifications:
+    - target: {fileID: 1394064149176860951, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 360fabf0edc5d78469df2e6f6ea31032, type: 3}
     - target: {fileID: 2445377304274740999, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

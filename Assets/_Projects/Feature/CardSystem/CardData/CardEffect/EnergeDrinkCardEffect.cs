@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnergeDrinkCardEffect : CardEffectBase
 {
-    public override string Name => "Energy_Drink";
+    public override string Name => "EnergyDrink";
 
     public override int Priority => 0;
 

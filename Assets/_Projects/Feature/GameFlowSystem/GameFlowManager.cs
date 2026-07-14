@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameFlowManager : MonoBehaviour
 {
-
     public static GameFlowManager instance = null; // 메모리 할당 변수
+
+    [SerializeField] private GameObject battleTurnView;
+    [SerializeField] private GameObject playerTurnView;
+    [SerializeField] private GameObject enemyTurnView;
 
     private void Awake() // singleton pattern
     {
@@ -31,22 +34,29 @@ public class GameFlowManager : MonoBehaviour
     private void OnStartGame()
     {
         PlayerStateBridge.StartAllocate();
+
+        Instantiate(playerTurnView);
     }
 
     private void PlayerStateBridge_OnAllocateComplete()
     {
         EnemyStateBridge.StartAllocate();
 
+        Instantiate(enemyTurnView);
     }
 
     private void EnemyStateBridge_OnAllocateComplete()
     {
         BattleManager.Instance.StartBattle();
+
+        Instantiate(battleTurnView);
     }
 
     private void OnBattleComplete()
     {
         PlayerStateBridge.StartAllocate();
+
+        Instantiate(playerTurnView);
     }
 
 

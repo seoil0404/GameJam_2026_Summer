@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 
 public class HandManager : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class HandManager : MonoBehaviour
         {
             if (_PlayerHands.Count <= 0)
             {
-                InitializePlayerHands();
+                StartCoroutine(InitializePlayerHands());
             }
 
             return _PlayerHands;
@@ -57,26 +59,30 @@ public class HandManager : MonoBehaviour
 
     private void OnStartgame()
     {
-
+        StartCoroutine(InitializeEnemyHands());
     }
 
-    public void InitializePlayerHands()
+    public IEnumerator InitializePlayerHands()
     {
         _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Player);
         foreach (CardData card in _PlayerHands)
         {
             var cardView = CardManager.Instance.GenerateCardView(card);
             cardView.AttatchCard(playerHandView);
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
-    public void InitializeEnemyHands()
+    public IEnumerator InitializeEnemyHands()
     {
         _EnemyHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Enemy);
         foreach (CardData card in _EnemyHands)
         {
             var cardView = CardManager.Instance.GenerateCardView(card);
             cardView.AttatchCard(enemyHandView);
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

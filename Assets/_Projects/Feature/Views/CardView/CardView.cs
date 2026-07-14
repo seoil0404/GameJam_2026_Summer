@@ -11,6 +11,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private Image combatAttributeIconView;
     [SerializeField] private Image effectActivateConditionIconView;
     [SerializeField] private Image descriptionGuideView;
+    [SerializeField] private Image resultView;
+    [SerializeField] private CardViewAnimationController cardViewAnimationController;
 
     [Header("Registries")]
     [SerializeField] private CardEffectSpriteRegistry cardEffectSpriteRegistry;
@@ -22,6 +24,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public CardData CardData { get; private set; } = null;
     public bool bIsDragging { get; set; } = false;
+    public CardViewAnimationController CardViewAnimationController => cardViewAnimationController;
     
     private ICardHoldView cardHoldView = null;
 
@@ -29,12 +32,16 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private RectTransform rectTransform = null;
     private float moveLerpSpeed = 10.0f;
     private Vector2 targetPos = Vector2.zero;
+    private float targetAngle = 0.0f;
+    private float lerpedAngle = 0.0f;
 
     private CardDescriptionView cardDescriptionView = null;
 
     private CanvasGroup canvasGroup;
 
     private int originalIndex = 0;
+
+    private bool isFlipped = false;
 
     private void Awake()
     {
@@ -48,8 +55,34 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         descriptionGuideView.color = new Color(1, 1, 1, 0);
     }
 
+    public void SetResultView(EffectActivateCondition result)
+    {
+        resultView.sprite =
+            effectActivateConditionIconRegistry.GetIcon(result);
+    }
+
     public void AttatchCard(ICardHoldView _cardHoldView)
     {
+        if(cardHoldView != _cardHoldView && _cardHoldView is FieldSlotView)
+        {
+            bool isFull = true;
+            foreach (var fieldSlot in FieldManager.Instance.PlayerFieldSlotViews)
+            {
+                if (fieldSlot.CardView == null)
+                {
+                    isFull = false;
+                    break;
+                }
+            }
+
+            var _fieldSlotView = _cardHoldView as FieldSlotView;
+
+            if (!isFull && _fieldSlotView.CardView != null)
+                return;
+        }
+
+        CardViewAnimationController.OnAttatch();
+
         if (cardHoldView == _cardHoldView)
             return;
 
@@ -72,6 +105,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             else if(cardHoldView is HandView && _cardHoldView is FieldSlotView)
             {
                 var _fieldSlotView = _cardHoldView as FieldSlotView;
+
                 if(_fieldSlotView.CardView != null)
                 {
                     _fieldSlotView.CardView.Destroy();
@@ -85,6 +119,13 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         if (_cardHoldView is FieldSlotView && CardData.OwnerType == OwnerType.Player)
             Player.Instance.OnAllocated();
+        if(CardData.OwnerType == OwnerType.Enemy)
+        {
+            if (_cardHoldView is FieldSlotView)
+            {
+                transform.SetAsLastSibling();
+            }
+        }
     }
 
     public void SetCardView(CardData card)
@@ -101,17 +142,26 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             effectActivateConditionIconRegistry.GetIcon(card.EffectActivateCondition);
     }
 
-    public void SetTransform(Vector2 vector)
+    public void SetTransform(Vector2 vector, float zAngle = 0.0f)
     {
         targetPos = vector;
+        targetAngle = zAngle;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!bIsDragging)
         {
             rectTransform.anchoredPosition = 
                 Vector2.Lerp(rectTransform.anchoredPosition, targetPos, moveLerpSpeed * Time.deltaTime);
+
+            if(PlayerStateBridge.bIsAllocating)
+            {
+                lerpedAngle =
+                    Mathf.LerpAngle(lerpedAngle, targetAngle, moveLerpSpeed * Time.deltaTime);
+
+                rectTransform.localRotation = Quaternion.Euler(0.0f, 0.0f, lerpedAngle);
+            }
         }
         if(descriptionGuideView.color == Color.white && Input.GetKeyDown(KeyCode.Tab))
         {
@@ -120,6 +170,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Instantiate(cardDescriptionViewPrefab).SetDescriptionView(CardData);
             }
         }
+
+        if (!PlayerStateBridge.bIsAllocating)
+            lerpedAngle = 0;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -138,7 +191,13 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         bIsDragging = true;
         canvasGroup.blocksRaycasts = false;
 
-        descriptionGuideView.color = new Color(1, 1, 1, 0);
+        CardViewAnimationController.bIsTab = false;
+
+        CardViewAnimationController.OnCardPickUp();
+
+        originalIndex = transform.GetSiblingIndex();
+
+        transform.SetAsLastSibling();
 
         CardPickManager.Instance.CardPicked(this);
     }
@@ -151,7 +210,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         bIsDragging = false;
         canvasGroup.blocksRaycasts = true;
 
-        descriptionGuideView.color = new Color(1, 1, 1, 1);
+        CardViewAnimationController.OnCardPickDown();
+
+        transform.SetSiblingIndex(originalIndex);
 
         CardPickManager.Instance.CardUnpicked(this);
     }
@@ -161,13 +222,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
-        originalIndex = transform.GetSiblingIndex();
-
-        transform.SetAsLastSibling();
-
-        descriptionGuideView.color = new Color(1, 1, 1, 1);
-
-        transform.localScale = Vector3.one * 1.1f;
+        HandManager.Instance.PlayerHandView.OnEnterPointer(this);
+        CardViewAnimationController.bIsTab = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -175,15 +231,13 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if (!PlayerStateBridge.bIsAllocating || CardData.OwnerType == OwnerType.Enemy)
             return;
 
-        transform.SetSiblingIndex(originalIndex);
+        HandManager.Instance.PlayerHandView.OnExitPointer(this);
+        CardViewAnimationController.bIsTab = false;
 
-        descriptionGuideView.color = new Color(1, 1, 1, 0);
-
-        transform.localScale = Vector3.one;
     }
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        CardViewAnimationController.Destroy();
     }
 }

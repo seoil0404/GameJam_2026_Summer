@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using static BattleManager;
 
 public class BattleManager : MonoBehaviour
 {
@@ -19,17 +20,32 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
+        StartCoroutine(StartBattleWithDelay());
+    }
+
+    private IEnumerator StartBattleWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+
         effectStack.Clear();
 
         Field playerField = FieldManager.Instance.PlayerField;
         Field enemyField = FieldManager.Instance.EnemyField;
 
-        for(int index = 0; index < playerField.Cards.Length; index++)
+        for (int index = 0; index < playerField.Cards.Length; index++)
         {
             BattleCard(playerField.Cards[index], enemyField.Cards[index]);
+
+            yield return new WaitForSeconds(1f);
+
+            var underCardView = FieldManager.Instance.GetCardViewOnField(playerField.Cards[index]);
+            var overCardView = FieldManager.Instance.GetCardViewOnField(enemyField.Cards[index]);
+
+            underCardView.CardViewAnimationController.FightEnd();
+            overCardView.CardViewAnimationController.FightEnd();
         }
 
-        effectStack.Sort((a, b) => a.OwnerCard.CardEffect.Priority.CompareTo(b.OwnerCard.CardEffect.Priority));
+        //effectStack.Sort((a, b) => a.OwnerCard.CardEffect.Priority.CompareTo(b.OwnerCard.CardEffect.Priority));
 
         StartCoroutine(ApplyEffect());
     }
@@ -44,6 +60,15 @@ public class BattleManager : MonoBehaviour
         {
             effectStack.Add(new EffectContainer(enemyCard, enemyCard));
         }
+
+        var underCardView = FieldManager.Instance.GetCardViewOnField(playerCard);
+        var overCardView = FieldManager.Instance.GetCardViewOnField(enemyCard);
+
+        underCardView.CardViewAnimationController.UnderCardFight();
+        overCardView.CardViewAnimationController.OverCardFight();
+
+        underCardView.SetResultView(BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute));
+        overCardView.SetResultView(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute));
     }
 
     // return EffectActivateCondition as left
@@ -67,7 +92,6 @@ public class BattleManager : MonoBehaviour
 
         foreach (var effectContainer in effectStack)
         {
-            effectContainer.ActivateEffect();
 
             yield return new WaitForSeconds(1f);
         }

@@ -19,4 +19,20 @@ public class FieldManager : MonoBehaviour
     {
 
     }
+
+    public CardView GetCardViewOnField(CardData cardData)
+    {
+        foreach (var item in PlayerFieldSlotViews)
+        {
+            if (item.CardView.CardData.Hash == cardData.Hash)
+                return item.CardView;
+        }
+        foreach (var item in EnemyFieldSlotViews)
+        {
+            if (item.CardView.CardData.Hash == cardData.Hash)
+                return item.CardView;
+        }
+
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class CardDescriptionView : MonoBehaviour
 {
     [Header("Elements")]
@@ -15,6 +16,8 @@ public class CardDescriptionView : MonoBehaviour
 
     [SerializeField] private Text effectTitle;
     [SerializeField] private Text effectDescription;
+
+    private Animator animator;
 
     public void SetDescriptionView(CardData cardData)
     {
@@ -38,6 +41,12 @@ public class CardDescriptionView : MonoBehaviour
     }
 
     private void Destroy()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("OnDestroy");
+    }
+
+    public void OnDestroyAnimationEnded()
     {
         Destroy(gameObject);
     }

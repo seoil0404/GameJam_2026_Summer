@@ -12,6 +12,7 @@ public static class CharacterAbilityUtility
         }
         if(UnityEngine.Random.value < character.EffectDoubleChance)
         {
+            Debug.Log($"{character.CharacterName} 정상작동 (효과 2배: {baseValue} -> {baseValue * 2})");
             return baseValue * 2;
         }
         else

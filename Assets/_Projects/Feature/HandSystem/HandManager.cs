@@ -60,7 +60,10 @@ public class HandManager : MonoBehaviour
 
     private void OnStartgame()
     {
-        StartCoroutine(InitializeEnemyHands());
+        if(_EnemyHands.Count <= 0)
+            StartCoroutine(InitializeEnemyHands());
+        if(_PlayerHands.Count <= 0)
+            StartCoroutine(InitializePlayerHands());
     }
 
     public IEnumerator InitializePlayerHands()

@@ -12,15 +12,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Awake() // singleton pattern
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     void Start()
@@ -59,11 +51,15 @@ public class GameFlowManager : MonoBehaviour
         Instantiate(playerTurnView);
     }
 
+    public void Victory()
+    {
+        SceneController.LoadScene(SceneType.SucessScene);
+    }
 
-
-    
-
-
+    public void Defeat()
+    {
+        SceneController.LoadScene(SceneType.DefeatScene);
+    }
     
     // Update is called once per frame
     void Update()

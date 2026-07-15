@@ -21,6 +21,12 @@ public class ButtonEvent : MonoBehaviour
         AudioManager.Instance.PlaySFX("2-1");
         SceneController.LoadScene(SceneType.StartScene);
     }
+    public void MoveTutorialScene() //씬 시작화면으로 이동
+    {
+        Debug.Log("버튼클릭");
+        AudioManager.Instance.PlaySFX("2-1");
+        SceneController.LoadScene(SceneType.TutorialScene);
+    }
     public void MoveCharSelectScene() //씬 캐릭터 선택으로 이동
     {
         Debug.Log("버튼클릭");
@@ -50,10 +56,6 @@ public class ButtonEvent : MonoBehaviour
         Debug.Log("나가기클릭");
     }
 
-    public void MoveTutorialScene()
-    {
-        SceneController.LoadScene(SceneType.TutorialScene);
-    }
     public void OptionActive() // 창 열고닫기
     {
         if (!OptionOCMan.isOpen)

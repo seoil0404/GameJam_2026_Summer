@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TimerManager : MonoBehaviour
+public class TimerManager : MonoBehaviour // 랭킹 기록 밑 시간 재는 클래스
 {
     public static TimerManager Instance { get; private set; }
 

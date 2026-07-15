@@ -14,6 +14,8 @@ public class Enemy : Entity
         }
         set
         {
+            value = Mathf.Min(20, value);
+
             base.Health = value < 0 ? 0 : value;
             if (base.Health == 0)
             {

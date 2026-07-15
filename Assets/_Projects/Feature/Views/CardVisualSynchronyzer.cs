@@ -88,6 +88,8 @@ public class CardVisualSynchronyzer : MonoBehaviour
                 var cardView = cardViews.Find(t => t.CardData.Hash == HandManager.Instance.EnemyHands[index].Hash);
                 cardView.AttatchCard(HandManager.Instance.EnemyHandView);
 
+                AudioManager.Instance.PlaySFX("4-1");
+
                 yield return new WaitForSeconds(0.3f);
             }
         }
@@ -99,6 +101,8 @@ public class CardVisualSynchronyzer : MonoBehaviour
                 var cardView = cardViews.Find(t => t.CardData.Hash == FieldManager.Instance.EnemyField.Cards[index].Hash);
                 cardView.AttatchCard(FieldManager.Instance.EnemyFieldSlotViews[index]);
 
+                AudioManager.Instance.PlaySFX("4-1");
+
                 yield return new WaitForSeconds(0.3f);
 
                 continue;
@@ -107,6 +111,8 @@ public class CardVisualSynchronyzer : MonoBehaviour
             {
                 var cardView = cardViews.Find(t => t.CardData.Hash == FieldManager.Instance.EnemyField.Cards[index].Hash);
                 cardView.AttatchCard(FieldManager.Instance.EnemyFieldSlotViews[index]);
+
+                AudioManager.Instance.PlaySFX("4-1");
 
                 yield return new WaitForSeconds(0.3f);
             }

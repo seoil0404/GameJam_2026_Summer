@@ -55,16 +55,17 @@ public class BattleManager : MonoBehaviour
 
     private void BattleCard(CardData playerCard, CardData enemyCard)
     {
-        EffectContainer effectContainer = null;
+        EffectContainer effectContainer1 = null;
+        EffectContainer effectContainer2 = null;
 
-        if(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute) == playerCard.EffectActivateCondition)
+        if (BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute) == playerCard.EffectActivateCondition)
         {
-            effectContainer = new EffectContainer(playerCard, enemyCard);
+            effectContainer1 = new EffectContainer(playerCard, enemyCard);
             //effectStack.Add(new EffectContainer(playerCard, enemyCard));
         }
         if (BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute) == enemyCard.EffectActivateCondition)
         {
-            effectContainer = new EffectContainer(enemyCard, enemyCard);
+            effectContainer2 = new EffectContainer(enemyCard, enemyCard);
             //effectStack.Add(new EffectContainer(enemyCard, enemyCard));
         }
 
@@ -77,7 +78,8 @@ public class BattleManager : MonoBehaviour
         underCardView.SetResultView(BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute));
         overCardView.SetResultView(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute));
 
-        StartCoroutine(GenerateEffect(underCardView, overCardView, effectContainer));
+        StartCoroutine(GenerateEffect(underCardView, overCardView, effectContainer1));
+        StartCoroutine(GenerateEffect(underCardView, overCardView, effectContainer2));
     }
 
     private IEnumerator GenerateEffect(CardView underCardView, CardView overCardView, EffectContainer effectContainer)

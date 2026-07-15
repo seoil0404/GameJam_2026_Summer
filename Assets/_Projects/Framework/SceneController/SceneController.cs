@@ -44,7 +44,11 @@ public class SceneController : MonoBehaviour
     private static IEnumerator LoadSceneByFade(SceneType sceneType)
     {
         Instantiate(instance.fadeOutViewPrefab);
+
+        AudioManager.Instance.PlaySFX("2-2");
+
         yield return new WaitForSeconds(0.5f);
+
         SceneManager.LoadScene(sceneType.ToString());
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

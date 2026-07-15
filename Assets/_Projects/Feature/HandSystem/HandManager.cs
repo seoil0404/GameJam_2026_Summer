@@ -68,7 +68,15 @@ public class HandManager : MonoBehaviour
 
     public IEnumerator InitializePlayerHands()
     {
-        _PlayerHands = CardManager.Instance.GenerateCards(cardGenerateCount, OwnerType.Player);
+        int bonus = GetPlayerHandSizeBonus();
+        int effectiveCount = cardGenerateCount + bonus;
+
+        if (bonus > 0)
+        {
+            Debug.Log($"{CharacterSelection.SelectedCharacter.CharacterName} 정상작동 (손패 {bonus}장 추가, 총 {effectiveCount}장)");
+        }
+
+        _PlayerHands = CardManager.Instance.GenerateCards(effectiveCount, OwnerType.Player);
         foreach (CardData card in _PlayerHands)
         {
             var cardView = CardManager.Instance.GenerateCardView(card);
@@ -76,6 +84,12 @@ public class HandManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    // 놀부(자원 비축형) 캐릭터의 손패 개수 보너스. 선택된 캐릭터가 없거나 놀부가 아니면 0.
+    private int GetPlayerHandSizeBonus()
+    {
+        return CharacterSelection.SelectedCharacter != null ? CharacterSelection.SelectedCharacter.HandSizeBonus : 0;
     }
 
     public IEnumerator InitializeEnemyHands()

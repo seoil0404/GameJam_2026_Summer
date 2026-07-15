@@ -31,5 +31,7 @@ public class CharacterAbilityManager : MonoBehaviour
         const int maxHealth = 20;
         int healAmount = Mathf.RoundToInt(enemy.Health * character.HealPercentOfEnemyHp);
         player.Health = Mathf.Min(player.Health + healAmount, maxHealth);
+
+        Debug.Log($"{character.CharacterName} 정상작동 (체력 {healAmount} 회복, 현재 체력 {player.Health})");
     }
 }

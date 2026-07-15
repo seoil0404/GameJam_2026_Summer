@@ -455,7 +455,6 @@ GameObject:
   - component: {fileID: 348962724}
   - component: {fileID: 348962723}
   - component: {fileID: 348962722}
-  - component: {fileID: 348962726}
   - component: {fileID: 348962727}
   m_Layer: 5
   m_Name: CharacterSlot_Left
@@ -500,7 +499,7 @@ MonoBehaviour:
   portraitImage: {fileID: 348962724}
   nameText: {fileID: 1447567173}
   selectButton: {fileID: 348962723}
-  selectedOutline: {fileID: 348962726}
+  selectionGlow: {fileID: 0}
 --- !u!114 &348962723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,21 +582,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348962720}
   m_CullTransparentMesh: 1
---- !u!114 &348962726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348962720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 0.8352941, b: 0, a: 1}
-  m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+
 --- !u!114 &348962727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,7 +1230,6 @@ GameObject:
   - component: {fileID: 1745069129}
   - component: {fileID: 1745069128}
   - component: {fileID: 1745069127}
-  - component: {fileID: 1745069131}
   - component: {fileID: 1745069132}
   m_Layer: 5
   m_Name: CharacterSlot_Center
@@ -1290,7 +1274,7 @@ MonoBehaviour:
   portraitImage: {fileID: 1745069129}
   nameText: {fileID: 1797710919}
   selectButton: {fileID: 1745069128}
-  selectedOutline: {fileID: 1745069131}
+  selectionGlow: {fileID: 0}
 --- !u!114 &1745069128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,21 +1357,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745069125}
   m_CullTransparentMesh: 1
---- !u!114 &1745069131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745069125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 0.8352941, b: 0, a: 1}
-  m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+
 --- !u!114 &1745069132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,7 +1539,6 @@ GameObject:
   - component: {fileID: 1827462517}
   - component: {fileID: 1827462516}
   - component: {fileID: 1827462515}
-  - component: {fileID: 1827462519}
   - component: {fileID: 1827462520}
   m_Layer: 5
   m_Name: CharacterSlot_Right
@@ -1614,7 +1583,7 @@ MonoBehaviour:
   portraitImage: {fileID: 1827462517}
   nameText: {fileID: 830024315}
   selectButton: {fileID: 1827462516}
-  selectedOutline: {fileID: 1827462519}
+  selectionGlow: {fileID: 0}
 --- !u!114 &1827462516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,21 +1666,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827462513}
   m_CullTransparentMesh: 1
---- !u!114 &1827462519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827462513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 1, g: 0.8352941, b: 0, a: 1}
-  m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+
 --- !u!114 &1827462520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,6 +1756,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915894341}
   m_CullTransparentMesh: 1
+
+
+
+
+
+
+
+
+
+
+
+
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

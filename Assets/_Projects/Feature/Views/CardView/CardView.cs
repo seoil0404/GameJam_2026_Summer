@@ -4,7 +4,13 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
-public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class CardView : 
+    MonoBehaviour, 
+    IBeginDragHandler, 
+    IEndDragHandler, 
+    IDragHandler, 
+    IPointerEnterHandler, 
+    IPointerExitHandler
 {
     [Header("Elements")]
     [SerializeField] private Image cardEffectView;

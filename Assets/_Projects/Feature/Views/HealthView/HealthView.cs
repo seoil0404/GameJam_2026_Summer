@@ -8,7 +8,7 @@ public class HealthView : MonoBehaviour
 
     public void SetHealthText(int health)
     {
-        if(health == 20)
+        if (health == 20 && healthText.text == "x20")
         {
             var obj = Instantiate(fullHealthWarningViewPrefab, transform);
             obj.transform.localPosition = Vector3.zero;

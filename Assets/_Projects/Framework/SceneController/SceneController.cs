@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
 #if UNITY_EDITOR
     [RuntimeInitializeOnLoadMethod]
     private static void GenerateSceneController()
@@ -15,6 +14,9 @@ public class SceneController : MonoBehaviour
 #endif
 
     private static SceneController instance { get; set; }
+
+    [SerializeField] private GameObject fadeOutViewPrefab;
+    [SerializeField] private GameObject fadeInViewPrefab;
 
     private void Awake()
     {
@@ -36,6 +38,19 @@ public class SceneController : MonoBehaviour
 
     public static void LoadScene(SceneType sceneType)
     {
+        instance.StartCoroutine(LoadSceneByFade(sceneType));
+    }
+
+    private static IEnumerator LoadSceneByFade(SceneType sceneType)
+    {
+        Instantiate(instance.fadeOutViewPrefab);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(sceneType.ToString());
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Instantiate(instance.fadeInViewPrefab);
     }
 }

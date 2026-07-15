@@ -59,11 +59,15 @@ public class GameFlowManager : MonoBehaviour
         Instantiate(playerTurnView);
     }
 
+    public void Victory()
+    {
+        SceneController.LoadScene(SceneType.SucessScene);
+    }
 
-
-    
-
-
+    public void Defeat()
+    {
+        SceneController.LoadScene(SceneType.DefeatScene);
+    }
     
     // Update is called once per frame
     void Update()

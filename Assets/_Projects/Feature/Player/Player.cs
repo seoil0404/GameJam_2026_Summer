@@ -19,7 +19,12 @@ public class Player : Entity
         }
         set
         {
-            base.Health = value;
+            base.Health = value < 0 ? 0 : value;
+            if(base.Health == 0)
+            {
+                GameFlowManager.instance.Defeat();
+            }
+
             healthView.SetHealthText(value);
         }
     }

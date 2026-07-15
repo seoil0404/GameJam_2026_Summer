@@ -26,11 +26,7 @@ public static class EnemyStateBridge
         }
 
         CardVisualSynchronyzer.Instance.SyncEnemy();
-        CardVisualSynchronyzer.Instance.OnSyncEnemyComplete += OnSyncEnemyComplete;
-    }
 
-    private static void OnSyncEnemyComplete()
-    {
         OnAllocateComplete?.Invoke();
     }
 
@@ -91,7 +87,7 @@ public static class EnemyStateBridge
         int bestSwapA = -1;
         int bestSwapB = -1;
 
-        // 후보 1: 손패 카드로 특정 자리 교체
+        //손패 카드로 특정 자리 교체
         foreach (CardData candidate in hands)
         {
             for (int i = 0; i < slotCount; i++)
@@ -112,7 +108,7 @@ public static class EnemyStateBridge
             }
         }
 
-        // 후보 2: 필드 카드 두 자리 위치 교환
+        //필드카드 두자리 위치 교환
         for (int i = 0; i < slotCount; i++)
         {
             for (int j = i + 1; j < slotCount; j++)
@@ -168,7 +164,7 @@ public static class EnemyStateBridge
         return score;
     }
 
-    // self 입장에서 이 매치업 결과가 Win / Lose / Draw 중 뭔지 (BattleManager 판정 규칙과 동일)
+    // self입장
     private static EffectActivateCondition GetOutcome(CombatAttribute self, CombatAttribute opponent)
     {
         if (self == opponent)
@@ -177,7 +173,7 @@ public static class EnemyStateBridge
         return Beats(self, opponent) ? EffectActivateCondition.Win : EffectActivateCondition.Lose;
     }
 
-    // outcome을 상대방 입장에서 보면 어떻게 되는지 (Win <-> Lose, Draw는 그대로)
+    // outcome을상대방관점에서
     private static EffectActivateCondition Mirror(EffectActivateCondition outcome)
     {
         return outcome switch
@@ -188,7 +184,7 @@ public static class EnemyStateBridge
         };
     }
 
-    // attacker가 defender를 이기는지 (BattleManager의 승패 판정과 동일한 규칙)
+    // attacker가 defender를 이기는지
     private static bool Beats(CombatAttribute attacker, CombatAttribute defender)
     {
         return (attacker, defender) switch
@@ -200,7 +196,7 @@ public static class EnemyStateBridge
         };
     }
 
-    //(미사용) 이 속성을 이기는 속성이 뭔지 반환. 속성 상성만 보던 이전 버전에서 쓰던 함수.
+    //(미사용)이기는속성반환함수
     private static CombatAttribute CounterOf_Unused(CombatAttribute attribute)
     {
         return attribute switch
@@ -212,7 +208,7 @@ public static class EnemyStateBridge
         };
     }
 
-    //(미사용) 예전에 쓰던 "매 라운드 필드를 통째로 랜덤 재생성" 방식.
+    //(미사용) 매라운드랜덤배치방식
     private static void StartAllocate_FullRandom_Unused()
     {
         Field field = FieldManager.Instance.EnemyField;
@@ -229,7 +225,7 @@ public static class EnemyStateBridge
         OnAllocateComplete?.Invoke();
     }
 
-    //(미사용) 예전에 쓰던 "50% 확률로 필드 위치교환 / 손패교체" 방식.
+    //(미사용) 5대5 랜덤배치방식
     private static void SwapFieldPositions_Unused(Field field)
     {
         if (field.Cards.Length < 2)
@@ -245,7 +241,7 @@ public static class EnemyStateBridge
         (field.Cards[indexA], field.Cards[indexB]) = (field.Cards[indexB], field.Cards[indexA]);
     }
 
-    //(미사용) 예전에 쓰던 "50% 확률로 필드 위치교환 / 손패교체" 방식.
+    //(미사용) 5대5 랜덤배치방식(손패)
     private static void SwapWithHand_Unused(List<CardData> hands, Field field)
     {
         if (hands.Count == 0)

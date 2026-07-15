@@ -34,6 +34,8 @@ public class CharacterAbilityManager : MonoBehaviour
         int cappedTarget = Mathf.Min(player.Health + healAmount, maxHealth);
         player.Health = Mathf.Max(player.Health, cappedTarget); // 이미 20을 넘겨둔 상태면 힐로 깎이지 않게 유지
 
+        AudioManager.Instance.PlaySFX("5-1");
+
         Debug.Log($"{character.CharacterName} 정상작동 (체력 {healAmount} 회복, 현재 체력 {player.Health})");
     }
 }

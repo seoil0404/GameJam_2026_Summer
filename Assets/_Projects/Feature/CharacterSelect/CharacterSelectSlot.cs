@@ -16,7 +16,11 @@ public class CharacterSelectSlot : MonoBehaviour
     private void Start()
     {
         SetView();
-        selectButton.onClick.AddListener(() => OnClicked?.Invoke(this));
+        selectButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PlaySFX("2-3");
+            OnClicked?.Invoke(this);
+        });
         SetHighlight(false);
 
     }

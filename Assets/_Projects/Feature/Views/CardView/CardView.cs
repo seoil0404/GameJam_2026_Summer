@@ -124,7 +124,10 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             if (_cardHoldView is FieldSlotView)
             {
                 transform.SetAsLastSibling();
+
+                CardViewAnimationController.bIsFlip = false;
             }
+            else CardViewAnimationController.bIsFlip = true;
         }
     }
 
@@ -155,7 +158,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             rectTransform.anchoredPosition = 
                 Vector2.Lerp(rectTransform.anchoredPosition, targetPos, moveLerpSpeed * Time.deltaTime);
 
-            if(PlayerStateBridge.bIsAllocating)
+            if(PlayerStateBridge.bIsAllocating || cardHoldView is HandView)
             {
                 lerpedAngle =
                     Mathf.LerpAngle(lerpedAngle, targetAngle, moveLerpSpeed * Time.deltaTime);
@@ -171,7 +174,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
         }
 
-        if (!PlayerStateBridge.bIsAllocating)
+        if (!PlayerStateBridge.bIsAllocating && cardHoldView is not HandView)
             lerpedAngle = 0;
     }
 

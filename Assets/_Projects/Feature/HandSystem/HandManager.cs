@@ -10,6 +10,7 @@ public class HandManager : MonoBehaviour
     [SerializeField] private int cardGenerateCount = 8;
 
     [SerializeField] private HandView playerHandView;
+    [SerializeField] private EnemyStateView enemyStateView;
     public HandView PlayerHandView => playerHandView;
     private List<CardData> _PlayerHands = new();
     public List<CardData> PlayerHands
@@ -84,5 +85,29 @@ public class HandManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+
+        int fireCount = 0;
+        int waterCount = 0;
+        int grassCount = 0;
+
+        foreach (var cardData in EnemyHands)
+        {
+            switch (cardData.CombatAttribute)
+            {
+                case CombatAttribute.Fire:
+                    fireCount++;
+                    break;
+                case CombatAttribute.Water:
+                    waterCount++;
+                    break;
+                case CombatAttribute.Grass:
+                    grassCount++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        enemyStateView.SetView(fireCount, waterCount, grassCount);
     }
 }

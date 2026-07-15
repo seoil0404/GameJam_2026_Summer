@@ -12,17 +12,10 @@ public class PassTurnView : MonoBehaviour
 
     public void OnPressPassTurn()
     {
-        bool isFull = true;
-        foreach(var item in FieldManager.Instance.PlayerFieldSlotViews)
-        {
-            if(item.CardView == null)
-            {
-                isFull = false;
-                break;
-            }
-        }
+        if (!IsFieldFull())
+            return;
 
-        if (isFull && PlayerStateBridge.bIsAllocating)
+        if (PlayerStateBridge.bIsAllocating)
         {
             PlayerStateBridge.AllocateComplete();
         }
@@ -30,17 +23,7 @@ public class PassTurnView : MonoBehaviour
 
     private void Update()
     {
-        bool isFull = true;
-        foreach (var item in FieldManager.Instance.PlayerFieldSlotViews)
-        {
-            if (item.CardView == null)
-            {
-                isFull = false;
-                break;
-            }
-        }
-
-        if (isFull && PlayerStateBridge.bIsAllocating)
+        if (IsFieldFull() && PlayerStateBridge.bIsAllocating)
         {
             button.interactable = true;
         }
@@ -48,5 +31,22 @@ public class PassTurnView : MonoBehaviour
         {
             button.interactable = false;
         }
+    }
+
+    // FieldManager나 필드 슬롯이 아직 준비 안 됐을 수 있어서(씬 전환 직후 등) null 체크 후 순회한다.
+    private bool IsFieldFull()
+    {
+        if (FieldManager.Instance == null || FieldManager.Instance.PlayerFieldSlotViews == null)
+            return false;
+
+        foreach (var item in FieldManager.Instance.PlayerFieldSlotViews)
+        {
+            if (item == null || item.CardView == null)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

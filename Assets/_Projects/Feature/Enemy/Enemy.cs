@@ -38,6 +38,10 @@ public class Enemy : Entity
 
     void Update()
     {
-
+        // 테스트용 치트: K 누르면 적 체력 0으로 만들어서 승리씬으로 이동
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Health = 0;
+        }
     }
 }

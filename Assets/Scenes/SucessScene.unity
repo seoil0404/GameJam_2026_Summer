@@ -1086,7 +1086,6 @@ GameObject:
   - component: {fileID: 1842980766}
   - component: {fileID: 1842980765}
   - component: {fileID: 1842980768}
-  - component: {fileID: 1842980769}
   m_Layer: 5
   m_Name: Retry_this
   m_TagString: Untagged
@@ -1221,23 +1220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonEvent_2
   animator: {fileID: 0}
---- !u!114 &1842980769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842980763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2a271ea1d55854fb7e3500a5bf75b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResultUI
-  character: {fileID: 0}
-  titleText: {fileID: 0}
-  retryButton: {fileID: 527828189}
-  returnButton: {fileID: 183463549}
-  resultType: 0
 --- !u!1 &1907433275
 GameObject:
   m_ObjectHideFlags: 0

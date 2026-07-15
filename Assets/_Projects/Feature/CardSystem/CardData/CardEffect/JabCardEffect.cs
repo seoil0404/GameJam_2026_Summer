@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class JabCardEffect : CardEffectBase
 {
-    public override string Name => "Jab"; // º¹½Ì Àì
+    public override string Name => "Jab"; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     public override int Priority => 0;
 
-    public override string Description => "È¿°ú : \n¹ßµ¿ ½Ã »ó´ë¿¡°Ô 3ÀÇ ÇÇÇØ¸¦ °¡ÇÕ´Ï´Ù";
+    public override string Description => "È¿ï¿½ï¿½ : \nï¿½ßµï¿½ ï¿½ï¿½ ï¿½ï¿½ë¿¡ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
-        opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(3);
+        opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(3, owner);
         EffectToOpponent(owner, opponent);
         //Debug.Log($"{owner.name} used {Name} on {opponent.name}, dealing 3 damage. {opponent.name}'s health is now {opponent.Health}.");
     }

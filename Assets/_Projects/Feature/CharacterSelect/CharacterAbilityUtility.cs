@@ -2,8 +2,14 @@ using UnityEngine;
 
 public static class CharacterAbilityUtility
 {
-    public static int ApplyJackpotChance(int baseValue)
+    public static int ApplyJackpotChance(int baseValue, Entity owner)
     {
+        // 잭팟은 플레이어가 선택했을 때 플레이어 카드 효과에만 적용되어야 함. 적 카드 효과에는 적용 안 함.
+        if (!(owner is Player))
+        {
+            return baseValue;
+        }
+
         CharacterData character = CharacterSelection.SelectedCharacter;
 
         if(character == null)

@@ -249,7 +249,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 183463553}
         m_TargetAssemblyTypeName: ButtonEvent, Assembly-CSharp
-        m_MethodName: MoveCharStartScene
+        m_MethodName: MoveStartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

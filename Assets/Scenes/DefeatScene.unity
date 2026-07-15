@@ -204,8 +204,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 183463553}
-        m_TargetAssemblyTypeName: ButtonEvent_2, Assembly-CSharp
-        m_MethodName: SceneMove_Return
+        m_TargetAssemblyTypeName: ButtonEvent, Assembly-CSharp
+        m_MethodName: MoveStartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -262,9 +262,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 183463548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68daa716d41ccb14190cc3a4868810cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonEvent_2
+  m_Script: {fileID: 11500000, guid: 1e468daa4ea8826489e679b7fe6efc16, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEvent
+  animator: {fileID: 0}
 --- !u!1 &365695167
 GameObject:
   m_ObjectHideFlags: 0

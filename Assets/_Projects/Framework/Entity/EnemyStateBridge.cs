@@ -20,7 +20,7 @@ public static class EnemyStateBridge
         {
             PlaceInitialCards(hands, field);
         }
-        else if (UnityEngine.Random.value < 0.2f)
+        else if (UnityEngine.Random.value < 0.3f)
         {
             SmartAllocate(hands, field);
         }
@@ -61,7 +61,7 @@ public static class EnemyStateBridge
         }
     }
 
-    // 2라운드부터 20% 확률로 실행됨: 상대 필드는 보지 않고(다음에 플레이어가 뭘 낼지 모르는 상태),
+    // 2라운드부터 30% 확률로 실행됨: 상대 필드는 보지 않고(다음에 플레이어가 뭘 낼지 모르는 상태),
     // 내 손패만 보고 "이 카드면 이길 것 같다"(승리 조건 카드)를 찾아서 필드에서 제일 안좋은 자리와 교체한다.
     private static void SmartAllocate(List<CardData> hands, Field enemyField)
     {
@@ -123,7 +123,7 @@ public static class EnemyStateBridge
         };
     }
 
-    // 80% 확률로 이쪽을 타면 분석 없이 필드 위치교환 / 손패교체 중 하나를 랜덤으로 실행한다.
+    // 70% 확률로 이쪽을 타면 분석 없이 필드 위치교환 / 손패교체 중 하나를 랜덤으로 실행한다.
     private static void RandomAllocate(List<CardData> hands, Field field)
     {
         if (UnityEngine.Random.value < 0.5f)

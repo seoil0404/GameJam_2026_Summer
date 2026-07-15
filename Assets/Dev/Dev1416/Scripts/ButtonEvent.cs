@@ -15,7 +15,7 @@ public class ButtonEvent : MonoBehaviour
         OptionOCMan = OptionOpenAndClose.Instance;
         RankingMan = RankingPopUp.Instance;
     }
-    public void MoveCharStartScene() //씬 메인으로 이동
+    public void MoveStartScene() //씬 캐릭터 선택으로 이동
     {
         Debug.Log("버튼클릭");
 

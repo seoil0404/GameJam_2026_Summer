@@ -7,7 +7,6 @@ public class CharacterSelectSlot : MonoBehaviour
     [SerializeField] private Image portraitImage;
     [SerializeField] private Text nameText;
     [SerializeField] private Button selectButton;
-    [SerializeField] private Outline selectedOutline;
 
     public CharacterData CharacterData => characterData;
     public event Action<CharacterSelectSlot> OnClicked;
@@ -42,9 +41,6 @@ public class CharacterSelectSlot : MonoBehaviour
 
     public void SetHighlight(bool isSelected)
     {
-        if (selectedOutline != null)
-        {
-            selectedOutline.enabled = isSelected;
-        }
+        // 선택 강조 표시는 현재 사용하지 않음.
     }
 }

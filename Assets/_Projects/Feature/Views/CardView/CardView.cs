@@ -202,6 +202,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         transform.SetAsLastSibling();
 
+        AudioManager.Instance.PlaySFX("3-6");
+
         CardPickManager.Instance.CardPicked(this);
     }
 

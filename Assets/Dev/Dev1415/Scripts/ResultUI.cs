@@ -22,12 +22,28 @@ public class ResultUI : MonoBehaviour
 
     private void Start()
     {
+        SetCharacterPortrait();
+
         character.localScale = Vector3.zero;
         //titleText.rectTransform.localScale = Vector3.zero;
         retryButton.localScale = Vector3.zero;
         returnButton.localScale = Vector3.zero;
         Sequence seq = DOTween.Sequence();
         PlayAnimation();
+    }
+
+    // 캐릭터 선택 씬에서 고른 캐릭터의 초상화를 승리/패배 결과창에 반영
+    private void SetCharacterPortrait()
+    {
+        CharacterData selected = CharacterSelection.SelectedCharacter;
+        if (selected == null || selected.Protrait == null)
+            return;
+
+        Image characterImage = character.GetComponent<Image>();
+        if (characterImage != null)
+        {
+            characterImage.sprite = selected.Protrait;
+        }
     }
 
 

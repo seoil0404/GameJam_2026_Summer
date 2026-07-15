@@ -20,9 +20,13 @@ public static class EnemyStateBridge
         {
             PlaceInitialCards(hands, field);
         }
+        else if (UnityEngine.Random.value < 0.2f)
+        {
+            SmartAllocate(hands, field);
+        }
         else
         {
-            AnalyzeAndAllocate(hands, field);
+            RandomAllocate(hands, field);
         }
 
         CardVisualSynchronyzer.Instance.SyncEnemy();
@@ -40,160 +44,93 @@ public static class EnemyStateBridge
         return true;
     }
 
-    // 첫 라운드
+    // 첫 라운드: 상대 필드를 보고 판단하지 않고, 손패에서 그냥 순서대로(랜덤하게 생성된 손패이므로 사실상 랜덤) 채운다.
+    // 첫 라운드부터 상대 카드를 보고 맞춰 내면 무조건 이겨버려서 일부러 여길 상대 정보 없이 채우게 함.
     private static void PlaceInitialCards(List<CardData> hands, Field field)
     {
-        Field playerField = FieldManager.Instance.PlayerField;
-
         for (int i = 0; i < field.Cards.Length; i++)
         {
             if (hands.Count == 0)
                 break;
 
-            CardData best = hands[0];
-            int bestScore = ScoreSlot(best, playerField.Cards[i]);
-
-            foreach (CardData candidate in hands)
-            {
-                int score = ScoreSlot(candidate, playerField.Cards[i]);
-                if (score > bestScore)
-                {
-                    best = candidate;
-                    bestScore = score;
-                }
-            }
-
-            field.Cards[i] = best;
-            hands.Remove(best);
+            field.Cards[i] = hands[0];
+            hands.RemoveAt(0);
         }
     }
 
-    // 2라운드부터 가능한 행동(손패 1장 교체 / 필드 두 자리 위치 교환)
-    private static void AnalyzeAndAllocate(List<CardData> hands, Field enemyField)
+    // 2라운드부터 20% 확률로 실행됨: 상대 필드는 보지 않고(다음에 플레이어가 뭘 낼지 모르는 상태),
+    // 내 손패만 보고 "이 카드면 이길 것 같다"(승리 조건 카드)를 찾아서 필드에서 제일 안좋은 자리와 교체한다.
+    private static void SmartAllocate(List<CardData> hands, Field enemyField)
     {
-        Field playerField = FieldManager.Instance.PlayerField;
-        int slotCount = enemyField.Cards.Length;
+        CardData winCard = hands.Find(card => card.EffectActivateCondition == EffectActivateCondition.Win);
 
-        int[] currentScores = new int[slotCount];
-        for (int i = 0; i < slotCount; i++)
+        if (winCard == null)
         {
-            currentScores[i] = ScoreSlot(enemyField.Cards[i], playerField.Cards[i]);
+            // 손패에 승리 조건 카드가 없으면 그냥 랜덤 손패 교체로 대체
+            RandomSwapWithHand(hands, enemyField);
+            return;
         }
 
-        int bestDelta = 0;
-        int bestActionType = 0; // 0: 없음, 1: 손패 교체, 2: 필드 위치 교환
-        CardData bestHandCard = null;
-        int bestHandSlot = -1;
-        int bestSwapA = -1;
-        int bestSwapB = -1;
+        int worstSlot = FindWorstSlot(enemyField);
 
-        //손패 카드로 특정 자리 교체
-        foreach (CardData candidate in hands)
+        if (worstSlot == -1)
         {
-            for (int i = 0; i < slotCount; i++)
+            RandomSwapWithHand(hands, enemyField);
+            return;
+        }
+
+        enemyField.Cards[worstSlot] = winCard;
+        hands.Remove(winCard);
+    }
+
+    // 필드에서 가장 안좋다고 볼 수 있는 자리를 찾는다 (빈 자리 > 패배조건 카드 > 무승부조건 카드 > 승리조건 카드 순으로 우선 교체 대상)
+    private static int FindWorstSlot(Field field)
+    {
+        for (int i = 0; i < field.Cards.Length; i++)
+        {
+            if (field.Cards[i] == null)
+                return i;
+        }
+
+        int worstIndex = -1;
+        int worstRank = int.MaxValue;
+
+        for (int i = 0; i < field.Cards.Length; i++)
+        {
+            int rank = ConditionRank(field.Cards[i].EffectActivateCondition);
+            if (rank < worstRank)
             {
-                if (playerField.Cards[i] == null)
-                    continue;
-
-                int newScore = ScoreSlot(candidate, playerField.Cards[i]);
-                int delta = newScore - currentScores[i];
-
-                if (delta > bestDelta)
-                {
-                    bestDelta = delta;
-                    bestActionType = 1;
-                    bestHandCard = candidate;
-                    bestHandSlot = i;
-                }
+                worstRank = rank;
+                worstIndex = i;
             }
         }
 
-        //필드카드 두자리 위치 교환
-        for (int i = 0; i < slotCount; i++)
-        {
-            for (int j = i + 1; j < slotCount; j++)
-            {
-                if (enemyField.Cards[i] == null || enemyField.Cards[j] == null)
-                    continue;
-                if (playerField.Cards[i] == null || playerField.Cards[j] == null)
-                    continue;
-
-                int newScoreI = ScoreSlot(enemyField.Cards[j], playerField.Cards[i]);
-                int newScoreJ = ScoreSlot(enemyField.Cards[i], playerField.Cards[j]);
-                int delta = (newScoreI + newScoreJ) - (currentScores[i] + currentScores[j]);
-
-                if (delta > bestDelta)
-                {
-                    bestDelta = delta;
-                    bestActionType = 2;
-                    bestSwapA = i;
-                    bestSwapB = j;
-                }
-            }
-        }
-
-        if (bestActionType == 1)
-        {
-            enemyField.Cards[bestHandSlot] = bestHandCard;
-            hands.Remove(bestHandCard);
-        }
-        else if (bestActionType == 2)
-        {
-            (enemyField.Cards[bestSwapA], enemyField.Cards[bestSwapB]) = (enemyField.Cards[bestSwapB], enemyField.Cards[bestSwapA]);
-        }
-
+        return worstIndex;
     }
 
-
-    private static int ScoreSlot(CardData enemyCard, CardData playerCard)
+    // 숫자가 낮을수록 먼저 교체 대상 (패배 조건 < 무승부 조건 < 승리 조건)
+    private static int ConditionRank(EffectActivateCondition condition)
     {
-        if (enemyCard == null || playerCard == null)
-            return 0;
-
-        EffectActivateCondition enemyOutcome = GetOutcome(enemyCard.CombatAttribute, playerCard.CombatAttribute);
-        EffectActivateCondition playerOutcome = Mirror(enemyOutcome);
-
-        int score = 0;
-
-        if (enemyCard.EffectActivateCondition == enemyOutcome)
-            score += 1;
-
-        if (playerCard.EffectActivateCondition == playerOutcome)
-            score -= 1;
-
-        return score;
-    }
-
-    // self입장
-    private static EffectActivateCondition GetOutcome(CombatAttribute self, CombatAttribute opponent)
-    {
-        if (self == opponent)
-            return EffectActivateCondition.Draw;
-
-        return Beats(self, opponent) ? EffectActivateCondition.Win : EffectActivateCondition.Lose;
-    }
-
-    // outcome을상대방관점에서
-    private static EffectActivateCondition Mirror(EffectActivateCondition outcome)
-    {
-        return outcome switch
+        return condition switch
         {
-            EffectActivateCondition.Win => EffectActivateCondition.Lose,
-            EffectActivateCondition.Lose => EffectActivateCondition.Win,
-            _ => EffectActivateCondition.Draw
+            EffectActivateCondition.Lose => 0,
+            EffectActivateCondition.Draw => 1,
+            EffectActivateCondition.Win => 2,
+            _ => 1
         };
     }
 
-    // attacker가 defender를 이기는지
-    private static bool Beats(CombatAttribute attacker, CombatAttribute defender)
+    // 80% 확률로 이쪽을 타면 분석 없이 필드 위치교환 / 손패교체 중 하나를 랜덤으로 실행한다.
+    private static void RandomAllocate(List<CardData> hands, Field field)
     {
-        return (attacker, defender) switch
+        if (UnityEngine.Random.value < 0.5f)
         {
-            (CombatAttribute.Fire, CombatAttribute.Grass) => true,
-            (CombatAttribute.Grass, CombatAttribute.Water) => true,
-            (CombatAttribute.Water, CombatAttribute.Fire) => true,
-            _ => false
-        };
+            RandomSwapFieldPositions(field);
+        }
+        else
+        {
+            RandomSwapWithHand(hands, field);
+        }
     }
 
     //(미사용)이기는속성반환함수
@@ -225,8 +162,8 @@ public static class EnemyStateBridge
         OnAllocateComplete?.Invoke();
     }
 
-    //(미사용) 5대5 랜덤배치방식
-    private static void SwapFieldPositions_Unused(Field field)
+    // 필드 카드 두 자리를 완전 랜덤으로 위치교환 (분석 없음)
+    private static void RandomSwapFieldPositions(Field field)
     {
         if (field.Cards.Length < 2)
             return;
@@ -241,8 +178,8 @@ public static class EnemyStateBridge
         (field.Cards[indexA], field.Cards[indexB]) = (field.Cards[indexB], field.Cards[indexA]);
     }
 
-    //(미사용) 5대5 랜덤배치방식(손패)
-    private static void SwapWithHand_Unused(List<CardData> hands, Field field)
+    // 완전 랜덤한 필드 슬롯에 손패 맨 앞 카드를 교체 (분석 없음)
+    private static void RandomSwapWithHand(List<CardData> hands, Field field)
     {
         if (hands.Count == 0)
             return;

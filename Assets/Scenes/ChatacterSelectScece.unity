@@ -442,6 +442,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverScaleEffect
   hoverScale: 1.1
   scaleSpeed: 10
+--- !u!1001 &321890145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3507328249140192294, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_Name
+      value: BGMPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548964310117222329, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: bgmName
+      value: 1-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057151381013354201, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93589cbf530ec2542838bbbb703f8e0d, type: 3}
 --- !u!1 &348962720
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +560,6 @@ MonoBehaviour:
   portraitImage: {fileID: 348962724}
   nameText: {fileID: 1447567173}
   selectButton: {fileID: 348962723}
-  selectionGlow: {fileID: 0}
 --- !u!114 &348962723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,7 +642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348962720}
   m_CullTransparentMesh: 1
-
 --- !u!114 &348962727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,7 +1333,6 @@ MonoBehaviour:
   portraitImage: {fileID: 1745069129}
   nameText: {fileID: 1797710919}
   selectButton: {fileID: 1745069128}
-  selectionGlow: {fileID: 0}
 --- !u!114 &1745069128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1415,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745069125}
   m_CullTransparentMesh: 1
-
 --- !u!114 &1745069132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,7 +1640,6 @@ MonoBehaviour:
   portraitImage: {fileID: 1827462517}
   nameText: {fileID: 830024315}
   selectButton: {fileID: 1827462516}
-  selectionGlow: {fileID: 0}
 --- !u!114 &1827462516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,7 +1722,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827462513}
   m_CullTransparentMesh: 1
-
 --- !u!114 &1827462520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1756,18 +1811,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915894341}
   m_CullTransparentMesh: 1
-
-
-
-
-
-
-
-
-
-
-
-
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1777,3 +1820,4 @@ SceneRoots:
   - {fileID: 1415767982}
   - {fileID: 1726822}
   - {fileID: 900000091}
+  - {fileID: 321890145}

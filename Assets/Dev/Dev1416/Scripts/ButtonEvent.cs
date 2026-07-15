@@ -15,31 +15,37 @@ public class ButtonEvent : MonoBehaviour
         OptionOCMan = OptionOpenAndClose.Instance;
         RankingMan = RankingPopUp.Instance;
     }
-    public void MoveCharStartScene() //씬 메인으로 이동
+    public void MoveStartScene() //씬 시작화면으로 이동
     {
         Debug.Log("버튼클릭");
-
+        AudioManager.Instance.PlaySFX("2-1");
         SceneController.LoadScene(SceneType.StartScene);
     }
-    public void MoveCharSelectScene() //씬 메인으로 이동
+    public void MoveCharSelectScene() //씬 캐릭터 선택으로 이동
     {
         Debug.Log("버튼클릭");
+        AudioManager.Instance.PlaySFX("2-1");
 
         SceneController.LoadScene(SceneType.ChatacterSelectScece);
     }
     public void MoveMainScene() //씬 메인으로 이동
     {
         Debug.Log("버튼클릭");
+        AudioManager.Instance.PlaySFX("2-1");
 
         SceneController.LoadScene(SceneType.MainScene);
     }
-    public void MoveSucessScene() //씬 메인으로 이동
+    public void MoveSucessScene() //씬 승리화면으로 이동
     {
         Debug.Log("버튼클릭");
+        AudioManager.Instance.PlaySFX("2-1");
+
         SceneController.LoadScene(SceneType.SucessScene);
     }
     public void GameQuit() // 게임 종료
     {
+        AudioManager.Instance.PlaySFX("2-1");
+
         Debug.Log("나가기클릭");
     }
     public void OptionActive() // 창 열고닫기
@@ -47,12 +53,16 @@ public class ButtonEvent : MonoBehaviour
         if (!OptionOCMan.isOpen)
         {
             Debug.Log("옵션활성화");
+            AudioManager.Instance.PlaySFX("2-1");
+
             OptionOCMan.OpenOption();
         }
 
         else
         {
             Debug.Log("옵션비활성화");
+            AudioManager.Instance.PlaySFX("2-1");
+
             OptionOCMan.CloseOption();
         }
     }
@@ -61,12 +71,16 @@ public class ButtonEvent : MonoBehaviour
         if (!RankingMan.isActive)
         {
             Debug.Log("랭킹활성화");
+            AudioManager.Instance.PlaySFX("2-1");
+
             RankingMan.Open();
         }
 
         else
         {
             Debug.Log("랭킹비활성화");
+            AudioManager.Instance.PlaySFX("2-1");
+
             RankingMan.Close();
         }
     }

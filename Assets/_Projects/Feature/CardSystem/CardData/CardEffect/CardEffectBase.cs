@@ -28,6 +28,8 @@ public abstract class CardEffectBase : ICardEffect
         Vector2 startPos = CardView.transform.position;
         Vector2 endPos = owner.HealthView.transform.position;
 
+        AudioManager.Instance.PlaySFX("4-4");
+
         ParticleManager.instance.PlayHealTrail(startPos, endPos);
     }
 
@@ -35,6 +37,8 @@ public abstract class CardEffectBase : ICardEffect
     {
         Vector2 startPos = CardView.transform.position;
         Vector2 endPos = opponent.HealthView.transform.position;
+
+        AudioManager.Instance.PlaySFX("4-3");
 
         ParticleManager.instance.PlayAttackTrail(startPos, endPos);
     }

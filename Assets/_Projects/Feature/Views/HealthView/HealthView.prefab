@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.9299, y: 0.0000023846}
+  m_AnchoredPosition: {x: -13, y: 0.0000023846}
   m_SizeDelta: {x: 379.1, y: 203.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7340294696282811284
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131, y: -0.0000076294}
+  m_AnchoredPosition: {x: 110.0701, y: -0.0000076294}
   m_SizeDelta: {x: 886.05, y: 322.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2568430427584517341
@@ -188,7 +188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: 0}
+  m_AnchoredPosition: {x: -100.9299, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9104582433926680395
@@ -281,3 +281,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthView
   healthText: {fileID: 1394064149176860951}
+  fullHealthWarningViewPrefab: {fileID: 0}

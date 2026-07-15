@@ -21,12 +21,14 @@ public class ParticleManager : MonoBehaviour
     [SerializeField] private GameObject attackTrailPrefab;
     public void PlayAttackTrail(Vector2 startPos, Vector2 endPos)
     {
-        PlayTrail(attackTrailPrefab,hit08VFX,
+        PlayTrail(attackTrailPrefab,hit03VFX,
             startPos,
             endPos,
-            0.5f);
+            0.3f);
 
     }
+
+
     private void Awake()  // singleton pattern
     {
         if (instance == null)
@@ -50,7 +52,8 @@ public class ParticleManager : MonoBehaviour
         }
 
         Vector3 spawnPos = new Vector3(position.x, position.y, 0f);
-        Instantiate(vfxPrefab, spawnPos, Quaternion.identity);
+        GameObject vfx = Instantiate(vfxPrefab, spawnPos, Quaternion.identity);
+        Destroy(vfx, 3f);
     }
 
 
@@ -63,6 +66,7 @@ public class ParticleManager : MonoBehaviour
         GameObject trailObject = Instantiate(trailPrefab, spawnPos, Quaternion.identity);
         trailObject.transform.DOMove(endPos, duration).OnComplete(() => //트레일 무브 후 VFX 발동
         { PlayVFX(endVFXPrefab, endPos); }); //끝 VFX , // VFX 발동 위치
+        Destroy(trailObject, 2f);
 
     }
 
@@ -122,7 +126,17 @@ public class ParticleManager : MonoBehaviour
 
     }
 
-
+    
+    //private void Update() //TEST
+    //{
+    //    if (Input.GetKeyDown(KeyCode.T))
+    //    {
+    //        PlayAttackTrail(
+    //            new Vector2(-5, 0),
+    //            new Vector2(5, 0)
+    //        );
+    //    }
+    //}
 
 
 }

@@ -7,6 +7,8 @@ public class CardVisualSynchronyzer : MonoBehaviour
 {
     public static CardVisualSynchronyzer Instance { get; private set; }
 
+    [SerializeField] private EnemyStateView enemyStateView;
+
     private void Awake()
     {
         Instance = this;
@@ -94,5 +96,29 @@ public class CardVisualSynchronyzer : MonoBehaviour
                 cardView.AttatchCard(FieldManager.Instance.EnemyFieldSlotViews[index]);
             }
         }
+
+        int fireCount = 0;
+        int waterCount = 0;
+        int grassCount = 0;
+
+        foreach(var cardData in HandManager.Instance.EnemyHands)
+        {
+            switch(cardData.CombatAttribute)
+            {
+                case CombatAttribute.Fire:
+                    fireCount++;
+                    break;
+                case CombatAttribute.Water:
+                    waterCount++;
+                    break;
+                case CombatAttribute.Grass:
+                    grassCount++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        enemyStateView.SetView(fireCount, waterCount, grassCount);
     }
 }

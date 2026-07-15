@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(1.5f);
 
         OnStartGame?.Invoke();
     }

@@ -7,6 +7,6 @@ public class ExchangeStackView : MonoBehaviour
 
     public void SetStackView(int stack)
     {
-        exchangeStackText.text = "교환 스택 : " + stack.ToString();
+        exchangeStackText.text = "교체 횟수 : " + stack.ToString();
     }
 }

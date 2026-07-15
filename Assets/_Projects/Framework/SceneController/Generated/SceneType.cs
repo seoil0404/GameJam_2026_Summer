@@ -7,4 +7,5 @@ public enum SceneType {
 	SucessScene,
 	DefeatScene,
 	ChatacterSelectScece,
+	TutorialScene,
 }

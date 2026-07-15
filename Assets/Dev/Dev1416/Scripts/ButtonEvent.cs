@@ -46,7 +46,13 @@ public class ButtonEvent : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("2-1");
 
+        Application.Quit();
         Debug.Log("나가기클릭");
+    }
+
+    public void MoveTutorialScene()
+    {
+        SceneController.LoadScene(SceneType.TutorialScene);
     }
     public void OptionActive() // 창 열고닫기
     {

@@ -12,15 +12,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Awake() // singleton pattern
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     void Start()

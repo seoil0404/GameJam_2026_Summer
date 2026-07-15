@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 4096024492003071910}
   - component: {fileID: 33128237928558824}
   - component: {fileID: 963878425862884863}
+  - component: {fileID: 6038316720800441331}
   - component: {fileID: 9324584238540733}
   - component: {fileID: 3830122718072180317}
-  - component: {fileID: 6038316720800441331}
   m_Layer: 5
   m_Name: CardView
   m_TagString: Untagged
@@ -180,6 +180,22 @@ MonoBehaviour:
   combatAttributeIconRegistry: {fileID: 11400000, guid: 554ba642e83caff40bbe145f55d200bb, type: 2}
   effectActivateConditionIconRegistry: {fileID: 11400000, guid: 49599ddf3969a1344b981f00c8d0457a, type: 2}
   cardDescriptionViewPrefab: {fileID: 4349376252733255723, guid: f59ef2a2af27e9540bb11fb47688293b, type: 3}
+--- !u!114 &6038316720800441331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343635804037665038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f4c09712be243468e44cefe13362fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardViewAnimationController
+  cardEffectImage: {fileID: 33128237928558824}
+  combatAttributeIconView: {fileID: 4896694467314801492}
+  effectActivateConditionIconView: {fileID: 7972494726364371157}
+  backgroundSprite: {fileID: 21300000, guid: fd6e0adbdd6ab5c4395fc223a818899c, type: 3}
 --- !u!225 &9324584238540733
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -214,18 +230,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6038316720800441331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343635804037665038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f4c09712be243468e44cefe13362fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardViewAnimationController
 --- !u!1 &2380804227396344374
 GameObject:
   m_ObjectHideFlags: 0

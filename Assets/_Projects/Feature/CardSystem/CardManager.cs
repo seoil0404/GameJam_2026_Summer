@@ -21,10 +21,13 @@ public class CardManager : MonoBehaviour
     private List<Func<ICardEffect>> cardEffects { get; } = new List<Func<ICardEffect>>() 
     {
         () => new JabCardEffect(),
+        () => new SlashCardEffect(),
         () => new EnergeDrinkCardEffect(),
         () => new MultivitaminCardEffect(),
-        () => new SlashCardEffect(),
     };
+
+    private List<float> cardWeights { get; } = new List<float>() 
+    { 30, 23, 17, 8 };
 
     public List<CardData> GenerateCards(int count, OwnerType owner)
     {
@@ -32,7 +35,8 @@ public class CardManager : MonoBehaviour
 
         for(int index = 0; index < count; index++)
         {
-            ICardEffect cardEffect = cardEffects[UnityEngine.Random.Range(0, cardEffects.Count)]?.Invoke() ?? null;
+            int selectedIndex = GetWeightedRandomIndex(cardWeights);
+            ICardEffect cardEffect = cardEffects[selectedIndex]?.Invoke() ?? null;
             CombatAttribute combatAttribute = GetRandomEnum<CombatAttribute>();
             EffectActivateCondition effectActivateCondition = GetRandomEnum<EffectActivateCondition>();
 
@@ -41,6 +45,23 @@ public class CardManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    private int GetWeightedRandomIndex(List<float> weights)
+    {
+        float totalWeight = 0f;
+        for (int i = 0; i < weights.Count; i++)
+            totalWeight += weights[i];
+
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+        float cumulative = 0f;
+        for (int i = 0; i < weights.Count; i++)
+        {
+            cumulative += weights[i];
+            if (randomValue < cumulative)
+                return i;
+        }
+        return weights.Count - 1;
     }
 
     public CardView GenerateCardView(CardData cardData)

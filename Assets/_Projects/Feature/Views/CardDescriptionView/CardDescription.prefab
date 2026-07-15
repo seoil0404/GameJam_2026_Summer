@@ -173,15 +173,15 @@ RectTransform:
   m_GameObject: {fileID: 1654854354982729961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8031428219259918999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -167.08, y: -20.175}
-  m_SizeDelta: {x: 403.333, y: 383.813}
+  m_AnchoredPosition: {x: -163.27, y: -106.804}
+  m_SizeDelta: {x: 1095.931, y: 1086.103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4294816023544455233
 CanvasRenderer:
@@ -212,19 +212,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 360fabf0edc5d78469df2e6f6ea31032, type: 3}
+    m_FontSize: 103
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 76
+    m_MaxSize: 104
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\uD761\uD608\uD761\uD608\uD761\uD608\uD761\uD608\uD761\uD608\uD761\uD761\uD608\uD761\uD608\uD761\uD608\uD761\uD608\uD761\uD608\uD761"
 --- !u!1 &2692448838232523558
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,15 +252,15 @@ RectTransform:
   m_GameObject: {fileID: 2692448838232523558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8031428219259918999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -168.54004, y: 216}
-  m_SizeDelta: {x: 406.253, y: 88.536}
+  m_AnchoredPosition: {x: -163.27, y: 218}
+  m_SizeDelta: {x: 989.67, y: 254.488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2383706545307651342
 CanvasRenderer:
@@ -291,19 +291,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 62
-    m_FontStyle: 1
+    m_Font: {fileID: 12800000, guid: 360fabf0edc5d78469df2e6f6ea31032, type: 3}
+    m_FontSize: 152
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 76
+    m_MaxSize: 215
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD761\uD608"
+  m_Text: EnergyDrink
 --- !u!1 &3713880932487909447
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ RectTransform:
   m_GameObject: {fileID: 3713880932487909447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6015746614268999104}

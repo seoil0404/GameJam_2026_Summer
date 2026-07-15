@@ -3810,6 +3810,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5699920863321793691, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
+      propertyPath: fullHealthWarningViewPrefab
+      value: 
+      objectReference: {fileID: 8412899706344688859, guid: 78a340ddca5ec3c439791a4a7fee4e9b, type: 3}
     - target: {fileID: 8714906044791056172, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
       propertyPath: m_Name
       value: EnemyHealthView
@@ -5234,6 +5238,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5699920863321793691, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
+      propertyPath: fullHealthWarningViewPrefab
+      value: 
+      objectReference: {fileID: 8412899706344688859, guid: 78a340ddca5ec3c439791a4a7fee4e9b, type: 3}
     - target: {fileID: 8714906044791056172, guid: 2a63b776367387f46a39035a5babe6c2, type: 3}
       propertyPath: m_Name
       value: PlayerHealthView

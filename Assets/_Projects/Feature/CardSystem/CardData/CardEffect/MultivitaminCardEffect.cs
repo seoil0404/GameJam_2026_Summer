@@ -6,7 +6,7 @@ public class MultivitaminCardEffect : CardEffectBase
 
     public override int Priority => 0;
 
-    public override string Description => "Description";
+    public override string Description => "효과 : \n 발동 시 잃은 체력의 20%를 회복합니다";
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {

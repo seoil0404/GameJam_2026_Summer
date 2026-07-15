@@ -90,17 +90,6 @@ public class BattleManager : MonoBehaviour
 
         if(effectContainer != null)
         {
-            if (underCardView.CardData.Hash == effectContainer.OwnerCard.Hash)
-            {
-                ParticleManager.instance.PlayAttackTrail(underCardView.transform.position, enemyHealthView.transform.position);
-            }
-            else
-            {
-                ParticleManager.instance.PlayAttackTrail(underCardView.transform.position, playerHealthView.transform.position);
-            }
-
-            yield return new WaitForSeconds(.15f);
-
             effectContainer.ActivateEffect();
         }
     }

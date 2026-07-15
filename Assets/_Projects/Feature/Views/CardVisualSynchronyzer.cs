@@ -142,6 +142,9 @@ public class CardVisualSynchronyzer : MonoBehaviour
 
         enemyStateView.SetView(fireCount, waterCount, grassCount);
 
+        yield return new WaitForSeconds(1f);
+
         OnSyncEnemyComplete?.Invoke();
+        EnemyStateBridge.OnEndSync();
     }
 }

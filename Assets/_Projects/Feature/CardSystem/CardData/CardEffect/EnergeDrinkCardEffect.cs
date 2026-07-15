@@ -6,7 +6,7 @@ public class EnergeDrinkCardEffect : CardEffectBase
 
     public override int Priority => 0;
 
-    public override string Description => "ȿ�� : \n�ߵ� �� ü���� 2 ȸ���մϴ�";
+    public override string Description => "효과 : \n 발동 시 체력 2를 회복합니다.";
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {

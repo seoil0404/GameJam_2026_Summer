@@ -39,7 +39,7 @@ public class BattleManager : MonoBehaviour
         {
             BattleCard(playerField.Cards[index], enemyField.Cards[index]);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(.8f);
 
             var underCardView = FieldManager.Instance.GetCardViewOnField(playerField.Cards[index]);
             var overCardView = FieldManager.Instance.GetCardViewOnField(enemyField.Cards[index]);

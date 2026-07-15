@@ -30,7 +30,10 @@ public static class EnemyStateBridge
         }
 
         CardVisualSynchronyzer.Instance.SyncEnemy();
+    }
 
+    public static void OnEndSync()
+    {
         OnAllocateComplete?.Invoke();
     }
 

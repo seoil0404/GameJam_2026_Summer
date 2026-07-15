@@ -12,13 +12,9 @@ public abstract class Entity : MonoBehaviour
         }
         set
         {
-            LoseAmount += value - health;
-
             health = value;
         }
     }
 
     public abstract HealthView HealthView { get; }
-
-    public int LoseAmount { get; set; } = 0;
 }

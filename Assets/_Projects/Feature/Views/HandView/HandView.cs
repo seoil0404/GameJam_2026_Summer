@@ -59,7 +59,7 @@ public class HandView : CardHoldView
 
         float multiplier = reverseDirection ? -1f : 1f;
 
-        float _interval = interval * (-(1/11) * (float)cardCount + 3/2);
+        float _interval = interval * (-(1f / 14f) * (float)cardCount + 3f / 2f);
 
         for (int index = 0; index < cardCount; index++)
         {

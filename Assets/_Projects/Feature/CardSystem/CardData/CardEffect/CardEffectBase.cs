@@ -28,7 +28,7 @@ public abstract class CardEffectBase : ICardEffect
         Vector2 startPos = CardView.transform.position;
         Vector2 endPos = owner.HealthView.transform.position;
 
-        ParticleManager.instance.PlayAttackTrail(startPos, endPos);
+        ParticleManager.instance.PlayHealTrail(startPos, endPos);
     }
 
     protected void EffectToOpponent(Entity owner, Entity opponent)

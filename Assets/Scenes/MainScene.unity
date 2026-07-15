@@ -2906,6 +2906,7 @@ MonoBehaviour:
   hit08VFX: {fileID: 8393927888780647174, guid: 0777bc22e9e6ace47a89e97740ea56e9, type: 3}
   stunVFX: {fileID: 5663927605720312730, guid: 8dbab8fb0b777164e8f58b48c3ac7efb, type: 3}
   attackTrailPrefab: {fileID: 611868761371844710, guid: 5275053cbe82b774fa195c07dbda9be5, type: 3}
+  healTrailPrefab: {fileID: 611868761371844710, guid: 8ac4fd6b3ccc40747856044f81c47a57, type: 3}
 --- !u!4 &1266046540
 Transform:
   m_ObjectHideFlags: 0

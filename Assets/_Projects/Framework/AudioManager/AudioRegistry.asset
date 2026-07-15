@@ -12,4 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4700ddd2cd3845446ab828b54349064f, type: 3}
   m_Name: AudioRegistry
   m_EditorClassIdentifier: Assembly-CSharp::AudioRegistry
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 001d8a0c139fb0646b74b53b3b6d1587, type: 3}
+  - {fileID: 8300000, guid: 65c30504530fa0048bd602f2609659e2, type: 3}
+  - {fileID: 8300000, guid: 9e981602537cdb74597063149fcde51f, type: 3}
+  - {fileID: 8300000, guid: 44ed17c9e8bdb6b4698446d156d0c389, type: 3}
+  - {fileID: 8300000, guid: 7c6b6d748696ca3439af59c5bc9cda34, type: 3}
+  - {fileID: 8300000, guid: 5e2cdc9df7ef0594c941d1c84b84aaa5, type: 3}
+  - {fileID: 8300000, guid: dae2d61acb124e641b92580c2c500026, type: 3}
+  - {fileID: 8300000, guid: 66ca770b535a80240b9c10181ca8f1e3, type: 3}
+  - {fileID: 8300000, guid: 8808ee0ceee84e94eaf712667fb46344, type: 3}
+  - {fileID: 8300000, guid: 4a688a0dd9d568149bdd01765bd910a8, type: 3}
+  - {fileID: 8300000, guid: a13ffdea3664b174c81ffc3909316a8c, type: 3}
+  - {fileID: 8300000, guid: a9bffe23bdf1e254ba125374f800fed5, type: 3}
+  - {fileID: 8300000, guid: c68319d96ae8574419fe7b2e7f5ea221, type: 3}
+  - {fileID: 8300000, guid: 14e97502ba70ad84ba1f75b34f70e242, type: 3}
+  - {fileID: 8300000, guid: 289323b69b4198d41855dfc49ade75d8, type: 3}
+  - {fileID: 8300000, guid: e6ff624b4a7d6b9448f70bfa558ddce0, type: 3}
+  - {fileID: 8300000, guid: e1f2d9ef8becac94489ce342529f5a7f, type: 3}
+  - {fileID: 8300000, guid: 7ee600e7f88e135458ea0d6e2928e31c, type: 3}
+  - {fileID: 8300000, guid: bddf3105eac8f204bbb8482bcd6d990b, type: 3}
+  - {fileID: 8300000, guid: 4ee9be05514c3544e87d7cf0e6a4f156, type: 3}
+  - {fileID: 8300000, guid: ef1281a582e4d0845b1f1b8258ec99b9, type: 3}
+  - {fileID: 8300000, guid: 31e11d95da7342c47be52a0f756244b1, type: 3}
+  - {fileID: 8300000, guid: 5d09b752d8932a84aa91a05e8b9babe8, type: 3}

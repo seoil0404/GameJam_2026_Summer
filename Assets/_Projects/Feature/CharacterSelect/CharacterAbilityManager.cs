@@ -12,6 +12,7 @@ public class CharacterAbilityManager : MonoBehaviour
     private void OnBattleComplete()
     {
         turnCount++;
+        Debug.Log($"[턴 카운트 확인용] OnBattleComplete 호출됨 -> turnCount = {turnCount}");
         TryApplyPeriodicHeal();
     }
 
@@ -30,7 +31,8 @@ public class CharacterAbilityManager : MonoBehaviour
 
         const int maxHealth = 20;
         int healAmount = Mathf.RoundToInt(enemy.Health * character.HealPercentOfEnemyHp);
-        player.Health = Mathf.Min(player.Health + healAmount, maxHealth);
+        int cappedTarget = Mathf.Min(player.Health + healAmount, maxHealth);
+        player.Health = Mathf.Max(player.Health, cappedTarget); // 이미 20을 넘겨둔 상태면 힐로 깎이지 않게 유지
 
         Debug.Log($"{character.CharacterName} 정상작동 (체력 {healAmount} 회복, 현재 체력 {player.Health})");
     }

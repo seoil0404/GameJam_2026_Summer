@@ -6,11 +6,11 @@ public class EnergeDrinkCardEffect : CardEffectBase
 
     public override int Priority => 0;
 
-    public override string Description => "È¿°ú : \n¹ßµ¿ ½Ã Ã¼·ÂÀ» 2 È¸º¹ÇÕ´Ï´Ù";
+    public override string Description => "È¿ï¿½ï¿½ : \nï¿½ßµï¿½ ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ 2 È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
-        owner.Health += CharacterAbilityUtility.ApplyJackpotChance(2);
+        owner.Health += CharacterAbilityUtility.ApplyJackpotChance(2, owner);
         EffectToOwner(owner, opponent);
         //Debug.Log($"{owner.name} used {Name}, restoring 5 health. {owner.name}'s health is now {owner.Health}.");
     }

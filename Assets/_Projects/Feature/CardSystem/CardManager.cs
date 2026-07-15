@@ -22,6 +22,8 @@ public class CardManager : MonoBehaviour
     {
         () => new JabCardEffect(),
         () => new EnergeDrinkCardEffect(),
+        () => new MultivitaminCardEffect(),
+        () => new SlashCardEffect(),
     };
 
     public List<CardData> GenerateCards(int count, OwnerType owner)
@@ -47,6 +49,8 @@ public class CardManager : MonoBehaviour
         var cardView = Instantiate(cardViewPrefab, anchor.transform);
         cardView.SetCardView(cardData);
         cardView.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        AudioManager.Instance.PlaySFX("3-1");
 
         cardData.CardEffect.SetCardView(cardView);
         

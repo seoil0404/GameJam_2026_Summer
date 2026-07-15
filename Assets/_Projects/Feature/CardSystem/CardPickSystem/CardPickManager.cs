@@ -25,6 +25,7 @@ public class CardPickManager : MonoBehaviour
         if(currentCardPutField != null)
         {
             cardView.AttatchCard(currentCardPutField.ConnectedCardHoldView);
+            AudioManager.Instance.PlaySFX("3-7");
         }
     }
 

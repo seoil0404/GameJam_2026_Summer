@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d41d530e93e62004884df71cca1b7f0f
+guid: 3c5b1399ccf3bf74e9c0bd6af2fc8812
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2154355382704913509
-    second: UI_TURNSKIP_BUTTON_0
+      213: -5592048796345346769
+    second: T4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_TURNSKIP_BUTTON_0
+      name: T4_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 7
-        width: 332
-        height: 137
+        x: 0
+        y: 9
+        width: 900
+        height: 740
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b934ce591313a12e0800000000000000
-      internalID: -2154355382704913509
+      spriteID: f255f276f3d0562b0800000000000000
+      internalID: -5592048796345346769
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_TURNSKIP_BUTTON_0: -2154355382704913509
+      T4_0: -5592048796345346769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

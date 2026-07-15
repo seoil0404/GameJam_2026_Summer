@@ -195,7 +195,7 @@ MonoBehaviour:
   cardEffectImage: {fileID: 33128237928558824}
   combatAttributeIconView: {fileID: 4896694467314801492}
   effectActivateConditionIconView: {fileID: 7972494726364371157}
-  backgroundSprite: {fileID: 21300000, guid: fd6e0adbdd6ab5c4395fc223a818899c, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 081e922208bc1bb4f8aa7b49836b56ba, type: 3}
 --- !u!225 &9324584238540733
 CanvasGroup:
   m_ObjectHideFlags: 0

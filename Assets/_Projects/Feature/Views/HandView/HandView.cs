@@ -59,6 +59,8 @@ public class HandView : CardHoldView
 
         float multiplier = reverseDirection ? -1f : 1f;
 
+        float _interval = interval * (-(1/14) * (float)cardCount + 3/2);
+
         for (int index = 0; index < cardCount; index++)
         {
             float additionalValue = 0.0f;
@@ -67,7 +69,7 @@ public class HandView : CardHoldView
                 additionalValue += selectedHighlightLength;
             }
 
-            float angle = interval / radius;
+            float angle = _interval / radius;
             angle = angle * ((float)index - (float)cardCount * 0.5f + 0.5f);
             Vector2 targetPosition = new Vector2(Mathf.Sin(angle) * (radius + additionalValue), (Mathf.Cos(angle) * (radius + additionalValue) - radius) * multiplier);
             targetPosition += rectTransform.anchoredPosition;

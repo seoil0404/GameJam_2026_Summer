@@ -23,7 +23,7 @@ MonoBehaviour:
     \uB2E4\uB978 \uCE90\uB9AD\uD130\uBCF4\uB2E4 \uD6E8\uC52C \uC624\uB798 \uAC19\uC740
     \uCE74\uB4DC \uD480\uC744 \uC720\uC9C0\uD558\uBA70 \uC2F8\uC6B8 \uC218 \uC788\uB2E4."
   protrait: {fileID: -5399064036498969373, guid: 27ffe8b340dfab74a8bc1a889bc14ef8, type: 3}
-  handSizeBonus: 2
+  handSizeBonus: 4
   healIntervalTurns: 0
   healPercentOfEnemyHp: 0
   effectDoubleChance: 0

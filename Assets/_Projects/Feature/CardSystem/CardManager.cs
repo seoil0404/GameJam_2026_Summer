@@ -47,6 +47,8 @@ public class CardManager : MonoBehaviour
         var cardView = Instantiate(cardViewPrefab, anchor.transform);
         cardView.SetCardView(cardData);
         cardView.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        cardData.CardEffect.SetCardView(cardView);
         
         if(cardData.OwnerType == OwnerType.Player)
         {

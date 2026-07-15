@@ -12,6 +12,7 @@ public class SlashCardEffect : CardEffectBase
     {
         int slashDamage = opponent.Health / 5;
         opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(slashDamage);
+        EffectToOpponent(owner, opponent);
         //Debug.Log($"{opponent.name}used {Name}, {opponent.Health} dealing  5 damage");
     }
 }

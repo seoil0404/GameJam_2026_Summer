@@ -24,6 +24,8 @@ public class Enemy : Entity
         }
     }
 
+    public override HealthView HealthView => healthView;
+
     private void Awake()
     {
         Instance = this;

@@ -19,6 +19,8 @@ public class ParticleManager : MonoBehaviour
 
     //공격 트레일
     [SerializeField] private GameObject attackTrailPrefab;
+    //회복 트레일
+    [SerializeField] private GameObject healTrailPrefab;
     public void PlayAttackTrail(Vector2 startPos, Vector2 endPos)
     {
         PlayTrail(attackTrailPrefab,hit03VFX,
@@ -28,6 +30,14 @@ public class ParticleManager : MonoBehaviour
 
     }
 
+    public void PlayHealTrail(Vector2 startPos, Vector2 endPos)
+    {
+        PlayTrail(healTrailPrefab, energy08VFX,
+            startPos,
+            endPos,
+            0.3f);
+
+    }
 
     private void Awake()  // singleton pattern
     {

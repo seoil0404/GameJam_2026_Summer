@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     protected int health = 20;
 
@@ -17,6 +17,8 @@ public class Entity : MonoBehaviour
             health = value;
         }
     }
+
+    public abstract HealthView HealthView { get; }
 
     public int LoseAmount { get; set; } = 0;
 }

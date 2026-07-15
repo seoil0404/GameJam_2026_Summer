@@ -9,6 +9,9 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
 
+    [SerializeField] private HealthView playerHealthView;
+    [SerializeField] private HealthView enemyHealthView;
+
     public event Action OnBattleComplete;
 
     private List<EffectContainer> effectStack = new();
@@ -36,7 +39,7 @@ public class BattleManager : MonoBehaviour
         {
             BattleCard(playerField.Cards[index], enemyField.Cards[index]);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
 
             var underCardView = FieldManager.Instance.GetCardViewOnField(playerField.Cards[index]);
             var overCardView = FieldManager.Instance.GetCardViewOnField(enemyField.Cards[index]);
@@ -47,18 +50,22 @@ public class BattleManager : MonoBehaviour
 
         //effectStack.Sort((a, b) => a.OwnerCard.CardEffect.Priority.CompareTo(b.OwnerCard.CardEffect.Priority));
 
-        StartCoroutine(ApplyEffect());
+        EndBattle();
     }
 
     private void BattleCard(CardData playerCard, CardData enemyCard)
     {
+        EffectContainer effectContainer = null;
+
         if(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute) == playerCard.EffectActivateCondition)
         {
-            effectStack.Add(new EffectContainer(playerCard, enemyCard));
+            effectContainer = new EffectContainer(playerCard, enemyCard);
+            //effectStack.Add(new EffectContainer(playerCard, enemyCard));
         }
         if (BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute) == enemyCard.EffectActivateCondition)
         {
-            effectStack.Add(new EffectContainer(enemyCard, enemyCard));
+            effectContainer = new EffectContainer(enemyCard, enemyCard);
+            //effectStack.Add(new EffectContainer(enemyCard, enemyCard));
         }
 
         var underCardView = FieldManager.Instance.GetCardViewOnField(playerCard);
@@ -69,6 +76,22 @@ public class BattleManager : MonoBehaviour
 
         underCardView.SetResultView(BattleCard(enemyCard.CombatAttribute, playerCard.CombatAttribute));
         overCardView.SetResultView(BattleCard(playerCard.CombatAttribute, enemyCard.CombatAttribute));
+
+        StartCoroutine(GenerateEffect(underCardView, overCardView, effectContainer));
+    }
+
+    private IEnumerator GenerateEffect(CardView underCardView, CardView overCardView, EffectContainer effectContainer)
+    {
+        yield return new WaitForSeconds(.5f);
+
+        ParticleManager.instance.PlayHit08VFX((underCardView.transform.position + overCardView.transform.position) / 2);
+        
+        yield return new WaitForSeconds(.5f);
+
+        if(effectContainer != null)
+        {
+            effectContainer.ActivateEffect();
+        }
     }
 
     // return EffectActivateCondition as left
@@ -84,19 +107,6 @@ public class BattleManager : MonoBehaviour
 
             _ => EffectActivateCondition.Lose
         };
-    }
-
-    private IEnumerator ApplyEffect()
-    {
-        yield return new WaitForSeconds(1f);
-
-        foreach (var effectContainer in effectStack)
-        {
-
-            yield return new WaitForSeconds(1f);
-        }
-
-        EndBattle();
     }
 
     private void EndBattle()

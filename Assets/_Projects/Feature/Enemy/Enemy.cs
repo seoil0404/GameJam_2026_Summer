@@ -14,10 +14,17 @@ public class Enemy : Entity
         }
         set
         {
-            base.Health = value;
+            base.Health = value < 0 ? 0 : value;
+            if (base.Health == 0)
+            {
+                GameFlowManager.instance.Victory();
+            }
+
             healthView.SetHealthText(value);
         }
     }
+
+    public override HealthView HealthView => healthView;
 
     private void Awake()
     {

@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 483af0a3d3840f84da7c184aeb976302
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fadeOutViewPrefab: {fileID: 7917516086921575064, guid: 58c67ba5d2c63d547ab1958d364aa0a3, type: 3}
+  - fadeInViewPrefab: {fileID: 7748345801327006816, guid: d473fa0ba0990f846b3d328525ecac03, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

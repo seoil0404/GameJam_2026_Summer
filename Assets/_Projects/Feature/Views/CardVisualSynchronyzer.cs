@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -6,6 +8,8 @@ using UnityEngine;
 public class CardVisualSynchronyzer : MonoBehaviour
 {
     public static CardVisualSynchronyzer Instance { get; private set; }
+
+    public event Action OnSyncEnemyComplete;
 
     [SerializeField] private EnemyStateView enemyStateView;
 
@@ -34,6 +38,11 @@ public class CardVisualSynchronyzer : MonoBehaviour
     }
 
     public void SyncEnemy()
+    {
+        StartCoroutine(SyncEnemyCoroutine());
+    }
+
+    private IEnumerator SyncEnemyCoroutine()
     {
         List<CardView> cardViews = new();
 
@@ -66,7 +75,7 @@ public class CardVisualSynchronyzer : MonoBehaviour
         {
             int hash = cardData.Hash;
             var cardView = cardViews.FirstOrDefault(t => t.CardData.Hash == hash);
-            if(cardView == null)
+            if (cardView == null)
             {
                 cardViews.Add(CardManager.Instance.GenerateCardView(cardData));
             }
@@ -74,19 +83,23 @@ public class CardVisualSynchronyzer : MonoBehaviour
 
         for (int index = 0; index < HandManager.Instance.EnemyHands.Count; index++)
         {
-            if(HandManager.Instance.EnemyHandView.CardViews.FirstOrDefault(t => t.CardData.Hash == HandManager.Instance.EnemyHands[index].Hash) == null)
+            if (HandManager.Instance.EnemyHandView.CardViews.FirstOrDefault(t => t.CardData.Hash == HandManager.Instance.EnemyHands[index].Hash) == null)
             {
                 var cardView = cardViews.Find(t => t.CardData.Hash == HandManager.Instance.EnemyHands[index].Hash);
                 cardView.AttatchCard(HandManager.Instance.EnemyHandView);
+
+                yield return new WaitForSeconds(0.3f);
             }
         }
 
-        for(int index = 0; index < FieldManager.Instance.EnemyFieldSlotViews.Length; index++)
+        for (int index = 0; index < FieldManager.Instance.EnemyFieldSlotViews.Length; index++)
         {
             if (FieldManager.Instance.EnemyFieldSlotViews[index].CardView == null)
             {
                 var cardView = cardViews.Find(t => t.CardData.Hash == FieldManager.Instance.EnemyField.Cards[index].Hash);
                 cardView.AttatchCard(FieldManager.Instance.EnemyFieldSlotViews[index]);
+
+                yield return new WaitForSeconds(0.3f);
 
                 continue;
             }
@@ -94,6 +107,8 @@ public class CardVisualSynchronyzer : MonoBehaviour
             {
                 var cardView = cardViews.Find(t => t.CardData.Hash == FieldManager.Instance.EnemyField.Cards[index].Hash);
                 cardView.AttatchCard(FieldManager.Instance.EnemyFieldSlotViews[index]);
+
+                yield return new WaitForSeconds(0.3f);
             }
         }
 
@@ -101,9 +116,9 @@ public class CardVisualSynchronyzer : MonoBehaviour
         int waterCount = 0;
         int grassCount = 0;
 
-        foreach(var cardData in HandManager.Instance.EnemyHands)
+        foreach (var cardData in HandManager.Instance.EnemyHands)
         {
-            switch(cardData.CombatAttribute)
+            switch (cardData.CombatAttribute)
             {
                 case CombatAttribute.Fire:
                     fireCount++;
@@ -120,5 +135,7 @@ public class CardVisualSynchronyzer : MonoBehaviour
         }
 
         enemyStateView.SetView(fireCount, waterCount, grassCount);
+
+        OnSyncEnemyComplete?.Invoke();
     }
 }

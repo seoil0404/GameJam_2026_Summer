@@ -12,6 +12,7 @@ public class JabCardEffect : CardEffectBase
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
         opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(3);
+        EffectToOpponent(owner, opponent);
         //Debug.Log($"{owner.name} used {Name} on {opponent.name}, dealing 3 damage. {opponent.name}'s health is now {opponent.Health}.");
     }
 }

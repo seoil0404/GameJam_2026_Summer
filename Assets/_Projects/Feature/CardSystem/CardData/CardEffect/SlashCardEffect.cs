@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class SlashCardEffect : CardEffectBase
 {
-    public override string Name => "Slash"; //Âü°Ý
+    public override string Name => "Slash"; //ï¿½ï¿½ï¿½ï¿½
 
     public override int Priority => 0;
 
-    public override string Description => "È¿°ú : \n ¹ßµ¿ ½Ã »ó´ë Ã¼·ÂÀÇ 20%ÀÇ ÇÇÇØ¸¦ °¡ÇÕ´Ï´Ù";
+    public override string Description => "È¿ï¿½ï¿½ : \n ï¿½ßµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ 20%ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
 
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
         int slashDamage = opponent.Health / 5;
-        opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(slashDamage);
+        opponent.Health -= CharacterAbilityUtility.ApplyJackpotChance(slashDamage, owner);
         EffectToOpponent(owner, opponent);
         //Debug.Log($"{opponent.name}used {Name}, {opponent.Health} dealing  5 damage");
     }

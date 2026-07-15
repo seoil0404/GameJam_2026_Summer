@@ -11,7 +11,7 @@ public class MultivitaminCardEffect : CardEffectBase
     public override void ActivateEffect(Entity owner, Entity opponent)
     {
         int healthAmount = (20 - owner.Health) / 5;
-        owner.Health += CharacterAbilityUtility.ApplyJackpotChance(healthAmount);
+        owner.Health += CharacterAbilityUtility.ApplyJackpotChance(healthAmount, owner);
         EffectToOwner(owner, opponent);
     }
 }

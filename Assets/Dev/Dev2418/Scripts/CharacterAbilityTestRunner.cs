@@ -36,7 +36,7 @@ public class CharacterAbilityTestRunner : MonoBehaviour
     {
         CharacterSelection.Select(nolbu);
         HandManager.Instance.InitializePlayerHands();
-        Debug.Log($"[³îºÎ Å×½ºÆ®] ¼ÕÆÐ °³¼ö: {HandManager.Instance.PlayerHands.Count} (10ÀåÀÌ¸é Á¤»ó)");
+        Debug.Log($"[ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®] ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {HandManager.Instance.PlayerHands.Count} (10ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½)");
     }
 
     private void TestJackpot()
@@ -48,11 +48,11 @@ public class CharacterAbilityTestRunner : MonoBehaviour
 
         for (int i = 0; i < trials; i++)
         {
-            if (CharacterAbilityUtility.ApplyJackpotChance(10) == 20)
+            if (CharacterAbilityUtility.ApplyJackpotChance(10, Player.Instance) == 20)
                 doubleCount++;
         }
 
-        Debug.Log($"[ÀèÆÌ Å×½ºÆ®] {trials}¹ø Áß {doubleCount}¹ø 2¹è ¹ßµ¿ (200¹ø ±ÙÃ³¸é Á¤»ó, È®·üÀÌ¶ó Á¤È®È÷ 200Àº ¾Æ´Ò ¼ö ÀÖÀ½)");
+        Debug.Log($"[ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®] {trials}ï¿½ï¿½ ï¿½ï¿½ {doubleCount}ï¿½ï¿½ 2ï¿½ï¿½ ï¿½ßµï¿½ (200ï¿½ï¿½ ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, È®ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½È®ï¿½ï¿½ 200ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)");
     }
 
     private void TestGeomeori()
@@ -74,7 +74,7 @@ public class CharacterAbilityTestRunner : MonoBehaviour
             }
 
             BattleManager.Instance.StartBattle();
-            Debug.Log($"[°Å¸Ó¸® Å×½ºÆ®] {turn}ÅÏ ÈÄ ÇÃ·¹ÀÌ¾î Ã¼·Â: {Player.Instance.Health}");
+            Debug.Log($"[ï¿½Å¸Ó¸ï¿½ ï¿½×½ï¿½Æ®] {turn}ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã¼ï¿½ï¿½: {Player.Instance.Health}");
         }
     }
 }

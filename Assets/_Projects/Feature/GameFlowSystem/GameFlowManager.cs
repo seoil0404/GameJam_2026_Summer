@@ -53,14 +53,19 @@ public class GameFlowManager : MonoBehaviour
 
     public void Victory()
     {
+        
         SceneController.LoadScene(SceneType.SucessScene);
+        AudioManager.Instance.PlaySFX("1-3"); // SFX
+
     }
 
     public void Defeat()
     {
         SceneController.LoadScene(SceneType.DefeatScene);
+        AudioManager.Instance.PlaySFX("1-4"); // SFX
+
     }
-    
+
     // Update is called once per frame
     void Update()
     {
